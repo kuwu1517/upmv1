@@ -1162,14 +1162,56 @@
   }, { threshold: 0.5 });
   document.querySelectorAll('.stat-num').forEach(el => statObserver.observe(el));
 
-</script>
-<!-- Formspree Ajax library loads first -->
-<script src="https://unpkg.com/@formspree/ajax@1"></script>
-<script>
-  /* Contact form — Formspree Ajax */
-  window.addEventListener('load', function () {
-    window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
-    formspree('initForm', { formElement: '#contactForm', formId: 'xkolredj' });
+
+  /* Contact form — Formspree fetch */
+  document.getElementById('contactForm').addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    const btn = this.querySelector('[data-fs-submit-btn]');
+    const successDiv = document.getElementById('formSuccess');
+    const errorBanner = document.getElementById('formErrorBanner');
+
+    // Reset state
+    errorBanner.style.display = 'none';
+    errorBanner.textContent = '';
+    successDiv.style.display = 'none';
+    btn.disabled = true;
+    btn.style.opacity = '0.7';
+    const originalHTML = btn.innerHTML;
+    btn.innerHTML = 'Sending…';
+
+    try {
+      const res = await fetch('https://formspree.io/f/xkolredj', {
+        method: 'POST',
+        body: new FormData(this),
+        headers: { 'Accept': 'application/json' }
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        // Success — hide form fields, show success message
+        this.querySelectorAll('.form-row, .form-field, .form-submit').forEach(el => el.style.display = 'none');
+        successDiv.style.display = 'block';
+      } else {
+        // Formspree returned errors
+        const msg = data.errors
+          ? data.errors.map(err => err.message).join(', ')
+          : 'Something went wrong. Please try again.';
+        errorBanner.textContent = msg;
+        errorBanner.style.display = 'block';
+        btn.disabled = false;
+        btn.style.opacity = '1';
+        btn.innerHTML = originalHTML;
+      }
+    } catch (err) {
+      errorBanner.textContent = 'Network error. Please check your connection and try again.';
+      errorBanner.style.display = 'block';
+      btn.disabled = false;
+      btn.style.opacity = '1';
+      btn.innerHTML = originalHTML;
+    }
   });
+</script>
 </body>
 </html>
