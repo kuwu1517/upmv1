@@ -1028,40 +1028,9 @@
       </div>
     </div>
     <div class="contact-right reveal reveal-delay-2">
-      <form class="contact-form" id="contactForm">
-        <div class="form-row">
-          <div class="form-field">
-            <label for="name">Your name</label>
-            <input type="text" id="name" placeholder="Harkanwal Singh" required>
-          </div>
-          <div class="form-field">
-            <label for="email">Email address</label>
-            <input type="email" id="email" placeholder="you@company.com" required>
-          </div>
-        </div>
-        <div class="form-field">
-          <label for="service">What do you need?</label>
-          <select id="service">
-            <option value="" disabled selected>Select a service</option>
-            <option>Brand Strategy</option>
-            <option>Design</option>
-            <option>Social Media Management</option>
-            <option>Full-service (all of the above)</option>
-            <option>Something else</option>
-          </select>
-        </div>
-        <div class="form-field">
-          <label for="message">Tell us about your brand</label>
-          <textarea id="message" rows="5" placeholder="What's your business, what stage are you at, and what do you want to achieve?"></textarea>
-        </div>
-        <button type="submit" class="form-submit">
-          Send message
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-        <div class="form-success" id="formSuccess">
-          ✦ &nbsp;Message sent! We'll be in touch within 24 hours.
-        </div>
-      </form>
+     <form class="contact-form" id="contactForm" 
+      action="https://formspree.io/f/xkolredj" 
+      method="POST">
     </div>
   </div>
 </section>
@@ -1139,17 +1108,29 @@
   document.querySelectorAll('.stat-num').forEach(el => statObserver.observe(el));
 
   /* Contact form */
-  document.getElementById('contactForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const btn = this.querySelector('.form-submit');
-    btn.textContent = 'Sending…';
-    btn.disabled = true;
-    setTimeout(() => {
-      this.querySelectorAll('input, textarea, select, button').forEach(f => f.style.display = 'none');
-      const success = document.getElementById('formSuccess');
-      success.style.display = 'block';
-    }, 1200);
+ document.getElementById('contactForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const btn = this.querySelector('.form-submit');
+  btn.textContent = 'Sending…';
+  btn.disabled = true;
+
+  const data = new FormData(this);
+  const res = await fetch(this.action, {
+    method: 'POST',
+    body: data,
+    headers: { 'Accept': 'application/json' }
   });
+
+  if (res.ok) {
+    this.querySelectorAll('input, textarea, select, button').forEach(f => f.style.display = 'none');
+    document.getElementById('formSuccess').style.display = 'block';
+  } else {
+    btn.textContent = 'Something went wrong. Try again.';
+    btn.disabled = false;
+  }
+});
+ /* new form */
+ 
 </script>
 </body>
 </html>
