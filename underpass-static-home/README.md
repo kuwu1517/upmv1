@@ -1,0 +1,1 @@
+Place your logo at assets/logo.png. Upload folder to GitHub and deploy on Cloudflare Pages with no build command.
