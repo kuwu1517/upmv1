@@ -27,8 +27,14 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   --divide:  #2A2A2A;   /* borders/dividers on dark */
   --cream-d: #E8E5B8;   /* cream, dimmed — secondary text on cream bg */
   --cream-dd:#B8B49A;   /* cream, more dimmed — tertiary on cream */
-  --blue-pale: rgba(25,115,192,0.08);  /* tint wash on cream */
+  --blue-pale:   rgba(25,115,192,0.08);
   --blue-border: rgba(25,115,192,0.18);
+
+  /* Accent / Secondary colours */
+  --red:       #EF4B3C;   /* Frame Red   — one element per layout max */
+  --pink:      #F9B6B1;   /* Dust Pink   — testimonial/soft card bg */
+  --beige:     #E8E0C8;   /* Grain Beige — texture, dividers, card fills */
+  --fog:       #F5F3EC;   /* Fog White   — alternate light bg */
 
   /* Typography */
   --poppins:   'Poppins', sans-serif;          /* PRIMARY — headings, CTAs, bold UI */
@@ -94,7 +100,7 @@ body {
 }
 .nav-btn:hover { background: var(--blue-lt); transform: translateY(-1px); }
 
-/* ── HERO — dark section ── */
+/* ── HERO — cream bg, 2-col balanced grid ── */
 .hero {
   min-height: 100vh;
   display: grid;
@@ -103,14 +109,14 @@ body {
   padding-top: 68px;
   position: relative;
   overflow: hidden;
-  background: var(--black);
+  background: var(--cream);
 }
 .hero-body {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
   padding: 80px 0 40px;
-  max-width: 960px;
 }
 .hero-kicker {
   display: inline-flex;
@@ -121,13 +127,13 @@ body {
   font-weight: 500;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--cream-d);
-  opacity: 0.6;
+  color: var(--black);
+  opacity: 0.4;
   margin-bottom: 32px;
 }
 .hero-kicker-dot {
   width: 6px; height: 6px;
-  background: var(--blue);
+  background: var(--red);
   border-radius: 50%;
   opacity: 1;
 }
@@ -138,8 +144,8 @@ body {
   font-weight: 800;
   line-height: 0.95;
   letter-spacing: -0.03em;
-  color: var(--cream);
-  margin-bottom: 40px;
+  color: var(--black);
+  margin-bottom: 0;
 }
 .hero-h1 .accent {
   font-family: var(--cormorant);
@@ -149,22 +155,37 @@ body {
   color: var(--blue);
   letter-spacing: -0.01em;
 }
+.hero-h1 .accent-red {
+  font-family: var(--cormorant);
+  font-style: italic;
+  font-weight: 600;
+  font-size: 1.08em;
+  color: var(--red);
+  letter-spacing: -0.01em;
+}
 .hero-h1 .thin {
   font-weight: 300;
-  color: var(--cream);
-  opacity: 0.45;
+  color: var(--black);
+  opacity: 0.35;
+}
+.hero-right {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+.hero-right-rule {
+  width: 40px; height: 2px;
+  background: var(--red);
 }
 .hero-desc {
   font-family: var(--space);
   font-size: 16px;
   font-weight: 300;
-  color: var(--cream);
-  opacity: 0.5;
-  max-width: 480px;
-  line-height: 1.8;
-  margin-bottom: 44px;
+  color: var(--black);
+  opacity: 0.55;
+  line-height: 1.85;
 }
-.hero-desc strong { opacity: 1; font-weight: 500; color: var(--cream); }
+.hero-desc strong { opacity: 1; font-weight: 500; color: var(--black); }
 .hero-actions {
   display: flex; align-items: center; gap: 18px; flex-wrap: wrap;
 }
@@ -188,69 +209,69 @@ body {
   font-family: var(--space);
   font-size: 14px;
   font-weight: 400;
-  color: var(--cream);
+  color: var(--black);
   opacity: 0.45;
-  border-bottom: 1px solid rgba(251,249,215,0.2);
+  border-bottom: 1px solid rgba(14,14,14,0.2);
   padding-bottom: 2px;
   transition: opacity 0.2s, border-color 0.2s;
 }
-.btn-outline:hover { opacity: 0.9; border-color: rgba(251,249,215,0.5); }
+.btn-outline:hover { opacity: 0.85; border-color: rgba(14,14,14,0.5); }
 
-/* Hero slash */
+/* Hero slash — subtle on cream */
 .hero-slash {
   position: absolute;
   top: 0; right: -100px; bottom: 0;
   width: 520px;
-  background: linear-gradient(135deg, transparent 40%, rgba(25,115,192,0.05) 40%, rgba(25,115,192,0.02) 100%);
+  background: linear-gradient(135deg, transparent 40%, rgba(25,115,192,0.04) 40%, rgba(25,115,192,0.02) 100%);
   pointer-events: none;
 }
 .hero-slash-line {
   position: absolute;
   top: 0; bottom: 0; left: 160px;
   width: 1px;
-  background: linear-gradient(to bottom, transparent 0%, rgba(25,115,192,0.3) 30%, rgba(25,115,192,0.3) 70%, transparent 100%);
+  background: linear-gradient(to bottom, transparent 0%, rgba(25,115,192,0.15) 30%, rgba(25,115,192,0.15) 70%, transparent 100%);
 }
 
-/* Hero foot */
+/* Hero foot — on cream */
 .hero-foot {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 28px 0 36px;
-  border-top: 1px solid var(--divide);
+  border-top: 1px solid var(--beige);
 }
 .hero-foot-stat { display: flex; align-items: baseline; gap: 10px; }
 .hero-foot-num {
   font-family: var(--poppins);
   font-size: 28px;
   font-weight: 700;
-  color: var(--cream);
+  color: var(--blue);
 }
 .hero-foot-label {
   font-family: var(--space);
   font-size: 11px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--cream);
+  color: var(--black);
   opacity: 0.35;
 }
-.hero-foot-divider { width: 1px; height: 36px; background: var(--divide); }
+.hero-foot-divider { width: 1px; height: 36px; background: var(--beige); }
 .hero-scroll {
   display: flex; align-items: center; gap: 10px;
   font-family: var(--space);
   font-size: 10px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--cream);
+  color: var(--black);
   opacity: 0.3;
 }
-.scroll-line { width: 40px; height: 1px; background: var(--divide); }
+.scroll-line { width: 40px; height: 1px; background: var(--beige); }
 
-/* ── TICKER — on cream ── */
+/* ── TICKER — Grain Beige ── */
 .ticker-wrap {
-  border-top: 1px solid var(--cream-d);
-  border-bottom: 1px solid var(--cream-d);
-  background: var(--cream);
+  border-top: 1px solid #D4CCAE;
+  border-bottom: 1px solid #D4CCAE;
+  background: var(--beige);
   overflow: hidden;
   padding: 13px 0;
 }
@@ -333,7 +354,7 @@ body {
 .delay-4 { transition-delay: 0.4s; }
 
 /* ── SERVICES — cream background ── */
-.services-bg { background: var(--cream); }
+.services-bg { background: var(--fog); }
 .services-header {
   display: flex;
   align-items: flex-end;
@@ -354,11 +375,11 @@ body {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1px;
-  background: var(--cream-d);
-  border: 1px solid var(--cream-d);
+  background: #D4CCAE;
+  border: 1px solid #D4CCAE;
 }
 .svc {
-  background: var(--cream);
+  background: var(--fog);
   padding: 44px 36px 40px;
   position: relative;
   overflow: hidden;
@@ -372,18 +393,18 @@ body {
   opacity: 0;
   transition: opacity 0.3s;
 }
-.svc:hover { background: #F5F2C2; }
+.svc:hover { background: #EDE9D8; }
 .svc:hover::after { opacity: 1; }
 .svc-icon {
   width: 40px; height: 40px;
   border-radius: 8px;
-  background: var(--blue-pale);
-  border: 1px solid var(--blue-border);
+  background: var(--pink);
+  border: 1px solid rgba(239,75,60,0.15);
   display: flex; align-items: center; justify-content: center;
   margin-bottom: 28px;
   transition: background 0.3s;
 }
-.svc:hover .svc-icon { background: rgba(25,115,192,0.14); }
+.svc:hover .svc-icon { background: #F5A09A; }
 .svc-icon svg { color: var(--blue); }
 /* Service titles — Poppins Bold */
 .svc-title {
@@ -428,8 +449,8 @@ body {
 .about-bg .section-title { color: var(--cream); }
 .about-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 72px;
   align-items: start;
 }
 .about-copy {
@@ -464,7 +485,7 @@ body {
   margin-top: 48px;
 }
 .stat {
-  background: var(--surface);
+  background: var(--beige);
   padding: 28px 20px;
   text-align: center;
 }
@@ -481,8 +502,8 @@ body {
   font-size: 10px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--cream);
-  opacity: 0.3;
+  color: var(--black);
+  opacity: 0.45;
 }
 .about-right { display: flex; flex-direction: column; gap: 2px; }
 .belief {
@@ -510,7 +531,7 @@ body {
 }
 
 /* ── PROCESS — cream ── */
-.process-bg { background: var(--cream); }
+.process-bg { background: var(--pink); }
 .process-header {
   display: flex;
   align-items: flex-end;
@@ -523,7 +544,7 @@ body {
   font-size: 15px;
   font-weight: 300;
   color: var(--black);
-  opacity: 0.5;
+  opacity: 0.6;
   max-width: 340px;
   line-height: 1.75;
 }
@@ -531,29 +552,29 @@ body {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1px;
-  background: var(--cream-d);
-  border: 1px solid var(--cream-d);
+  background: #E8A09A;
+  border: 1px solid #E8A09A;
 }
 .step {
-  background: var(--cream);
+  background: var(--pink);
   padding: 36px 28px 32px;
   position: relative;
   overflow: hidden;
   transition: background 0.25s;
 }
-.step:hover { background: #F5F2C2; }
+.step:hover { background: #F5A8A2; }
 /* big step number — Cormorant for drama */
 .step-n {
   font-family: var(--cormorant);
   font-size: 72px;
   font-weight: 600;
   line-height: 0.9;
-  color: var(--cream-d);
+  color: rgba(14,14,14,0.12);
   margin-bottom: 20px;
   letter-spacing: -0.02em;
   transition: color 0.3s;
 }
-.step:hover .step-n { color: rgba(25,115,192,0.18); }
+.step:hover .step-n { color: rgba(25,115,192,0.25); }
 .step-title {
   font-family: var(--poppins);
   font-size: 17px;
@@ -633,8 +654,8 @@ body {
 .contact-bg .section-title { color: var(--cream); }
 .contact-grid {
   display: grid;
-  grid-template-columns: 1fr 1.4fr;
-  gap: 80px;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 72px;
   align-items: start;
 }
 .contact-sub {
@@ -683,8 +704,8 @@ a.detail-value:hover { color: var(--blue); }
 .field input,
 .field textarea,
 .field select {
-  background: var(--surface);
-  border: 1px solid var(--divide);
+  background: #1A1A1A;
+  border: 1px solid #303030;
   color: var(--cream);
   font-family: var(--space);
   font-size: 14px;
@@ -782,6 +803,7 @@ a.detail-value:hover { color: var(--blue); }
   .nav { padding: 0 20px; }
   .nav-links { display: none; }
   .hero { padding: 0 20px; padding-top: 68px; }
+  .hero-body { grid-template-columns: 1fr; gap: 40px; }
   .hero-foot { flex-wrap: wrap; gap: 20px; }
   .section { padding: 72px 20px; }
   .services-header { flex-direction: column; align-items: flex-start; gap: 16px; }
@@ -817,25 +839,32 @@ a.detail-value:hover { color: var(--blue); }
 <section class="hero">
   <div class="hero-slash"><div class="hero-slash-line"></div></div>
   <div class="hero-body">
-    <div class="hero-kicker">
-      <span class="hero-kicker-dot"></span>
-      Creative Studio &nbsp;·&nbsp; Chandigarh, IN
+    <!-- Left col: headline -->
+    <div class="hero-left">
+      <div class="hero-kicker">
+        <span class="hero-kicker-dot"></span>
+        Creative Studio &nbsp;·&nbsp; Chandigarh, IN
+      </div>
+      <h1 class="hero-h1">
+        Stories<br>
+        <span class="thin">people</span> <span class="accent-red">feel.</span><br>
+        Brands<br>
+        <span class="thin">people</span> <span class="accent">remember.</span>
+      </h1>
     </div>
-    <h1 class="hero-h1">
-      Stories<br>
-      <span class="thin">people</span> <span class="accent">feel.</span><br>
-      Brands<br>
-      <span class="thin">people</span> <span class="accent">remember.</span>
-    </h1>
-    <p class="hero-desc">
-      Underpass Media helps ambitious businesses build <strong>brands that move people</strong> — through strategy, design, and content that earns attention.
-    </p>
-    <div class="hero-actions">
-      <a href="#contact" class="btn-primary">
-        Start your project
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
-      <a href="#services" class="btn-outline">See what we do</a>
+    <!-- Right col: desc + CTA -->
+    <div class="hero-right">
+      <div class="hero-right-rule"></div>
+      <p class="hero-desc">
+        Underpass Media helps ambitious businesses build <strong>brands that move people</strong> — through strategy, design, and content that earns attention.
+      </p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">
+          Start your project
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#services" class="btn-outline">See what we do</a>
+      </div>
     </div>
   </div>
   <div class="hero-foot">
@@ -1028,7 +1057,7 @@ a.detail-value:hover { color: var(--blue); }
 <!-- CTA BAND -->
 <div class="cta-band reveal">
   <div>
-    <h2 class="cta-band-title">Let's build something<br>worth remembering.</h2>
+    <h2 class="cta-band-title">Let's build something<br><span style="color:var(--red);font-style:italic;">worth</span> remembering.</h2>
     <p class="cta-band-sub">Tell us about your brand — we'll take it from there.</p>
   </div>
   <a href="#contact" class="btn-white">
