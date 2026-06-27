@@ -1048,7 +1048,7 @@
     </div>
     <div class="contact-right reveal reveal-delay-2">
       <form class="contact-form" id="contactForm">
-        <div data-fs-error style="display:none;" class="form-error-banner"></div>
+        <div class="form-error-banner" id="formErrorBanner" style="display:none;"></div>
         <div class="form-row">
           <div class="form-field">
             <label for="name">Your name</label>
@@ -1162,10 +1162,14 @@
   }, { threshold: 0.5 });
   document.querySelectorAll('.stat-num').forEach(el => statObserver.observe(el));
 
-  /* Contact form — Formspree Ajax */
-  window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
-  formspree('initForm', { formElement: '#contactForm', formId: 'xkolredj' });
 </script>
-<script src="https://unpkg.com/@formspree/ajax@1" defer></script>
+<!-- Formspree Ajax library loads first -->
+<script src="https://unpkg.com/@formspree/ajax@1"></script>
+<script>
+  /* Contact form — Formspree Ajax */
+  window.addEventListener('load', function () {
+    window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+    formspree('initForm', { formElement: '#contactForm', formId: 'xkolredj' });
+  });
 </body>
 </html>
