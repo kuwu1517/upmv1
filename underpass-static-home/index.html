@@ -4,7 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Underpass Media | Stories People Feel | Brands People Remember.</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
+<meta name="description" content="Underpass Media is a creative studio based in Chandigarh, India. We help ambitious businesses build brands through strategy, design, and content that earns attention.">
+<meta property="og:title" content="Underpass Media | Stories People Feel | Brands People Remember">
+<meta property="og:description" content="Creative studio based in Chandigarh. Brand strategy, identity design, and social media management for brands that want to be remembered.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Underpass Media | Stories People Feel | Brands People Remember">
+<meta name="twitter:description" content="Creative studio based in Chandigarh. Brand strategy, identity design, and social media management.">
+
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap" rel="stylesheet">
 <style>
@@ -217,20 +224,9 @@ body {
 }
 .btn-outline:hover { opacity: 0.85; border-color: rgba(14,14,14,0.5); }
 
-/* Hero slash — subtle on cream */
-.hero-slash {
-  position: absolute;
-  top: 0; right: -100px; bottom: 0;
-  width: 520px;
-  background: linear-gradient(135deg, transparent 40%, rgba(25,115,192,0.04) 40%, rgba(25,115,192,0.02) 100%);
-  pointer-events: none;
-}
-.hero-slash-line {
-  position: absolute;
-  top: 0; bottom: 0; left: 160px;
-  width: 1px;
-  background: linear-gradient(to bottom, transparent 0%, rgba(25,115,192,0.15) 30%, rgba(25,115,192,0.15) 70%, transparent 100%);
-}
+/* Hero slash — removed */
+.hero-slash { display: none; }
+.hero-slash-line { display: none; }
 
 /* Hero foot — on cream */
 .hero-foot {
@@ -398,13 +394,13 @@ body {
 .svc-icon {
   width: 40px; height: 40px;
   border-radius: 8px;
-  background: var(--pink);
-  border: 1px solid rgba(239,75,60,0.15);
+  background: var(--blue-pale);
+  border: 1px solid var(--blue-border);
   display: flex; align-items: center; justify-content: center;
   margin-bottom: 28px;
   transition: background 0.3s;
 }
-.svc:hover .svc-icon { background: #F5A09A; }
+.svc:hover .svc-icon { background: rgba(25,115,192,0.14); }
 .svc-icon svg { color: var(--blue); }
 /* Service titles — Poppins Bold */
 .svc-title {
@@ -530,8 +526,8 @@ body {
   line-height: 1.8;
 }
 
-/* ── PROCESS — cream ── */
-.process-bg { background: var(--pink); }
+/* ── PROCESS — fog ── */
+.process-bg { background: var(--fog); }
 .process-header {
   display: flex;
   align-items: flex-end;
@@ -552,17 +548,17 @@ body {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1px;
-  background: #E8A09A;
-  border: 1px solid #E8A09A;
+  background: #D4CCAE;
+  border: 1px solid #D4CCAE;
 }
 .step {
-  background: var(--pink);
+  background: var(--fog);
   padding: 36px 28px 32px;
   position: relative;
   overflow: hidden;
   transition: background 0.25s;
 }
-.step:hover { background: #F5A8A2; }
+.step:hover { background: #EDE9D8; }
 /* big step number — Cormorant for drama */
 .step-n {
   font-family: var(--cormorant);
@@ -798,10 +794,181 @@ a.detail-value:hover { color: var(--blue); }
 }
 .footer-links a:hover { opacity: 0.8; }
 
+/* ── HAMBURGER ── */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 4px;
+  z-index: 200;
+}
+.nav-hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--black);
+  border-radius: 2px;
+  transition: transform 0.3s, opacity 0.3s;
+}
+.nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ── FOUNDERS SECTION ── */
+.founders-bg {
+  background: var(--cream);
+  border-top: 1px solid var(--beige);
+}
+.founders-header {
+  margin-bottom: 56px;
+}
+.founders-intro {
+  font-family: var(--space);
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--black);
+  opacity: 0.55;
+  max-width: 580px;
+  line-height: 1.85;
+  margin-top: 20px;
+}
+.founders-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: #D4CCAE;
+  border: 1px solid #D4CCAE;
+  margin-bottom: 72px;
+}
+.founder-card {
+  background: var(--fog);
+  padding: 36px 28px 32px;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.25s;
+}
+.founder-card:hover { background: #EDE9D8; }
+.founder-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--blue);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+.founder-card:hover::after { transform: scaleX(1); }
+.founder-initials {
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  background: var(--blue-pale);
+  border: 1px solid var(--blue-border);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--poppins);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--blue);
+  margin-bottom: 20px;
+  letter-spacing: -0.01em;
+}
+.founder-name {
+  font-family: var(--poppins);
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--black);
+  margin-bottom: 4px;
+  letter-spacing: -0.01em;
+}
+.founder-role {
+  font-family: var(--space);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--blue);
+  opacity: 0.8;
+  margin-bottom: 16px;
+}
+.founder-bio {
+  font-family: var(--space);
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--black);
+  opacity: 0.55;
+  line-height: 1.8;
+}
+.founder-story-block {
+  background: var(--black);
+  padding: 64px 72px;
+  border-radius: 2px;
+}
+.founder-story-label {
+  font-family: var(--space);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 24px;
+}
+.founder-story-text {
+  font-family: var(--cormorant);
+  font-style: italic;
+  font-size: clamp(22px, 2.8vw, 34px);
+  font-weight: 500;
+  color: var(--cream);
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+}
+.founder-story-text em {
+  color: var(--blue);
+  font-style: normal;
+}
+.founder-story-byline {
+  font-family: var(--space);
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--cream);
+  opacity: 0.45;
+  margin-top: 32px;
+  line-height: 1.8;
+  max-width: 640px;
+}
+
 /* ── MOBILE ── */
+
 @media (max-width: 860px) {
   .nav { padding: 0 20px; }
-  .nav-links { display: none; }
+  .nav-links {
+    display: none;
+    position: fixed;
+    top: 68px; left: 0; right: 0;
+    background: rgba(251,249,215,0.98);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    flex-direction: column;
+    gap: 0;
+    padding: 12px 0 20px;
+    border-bottom: 1px solid var(--cream-d);
+    z-index: 99;
+  }
+  .nav-links.open { display: flex; }
+  .nav-links li a {
+    display: block;
+    padding: 14px 24px;
+    font-size: 15px;
+    opacity: 0.7;
+  }
+  .nav-links .nav-btn {
+    margin: 8px 24px 0;
+    display: block;
+    text-align: center;
+  }
+  .nav-hamburger { display: flex; }
   .hero { padding: 0 20px; padding-top: 68px; }
   .hero-body { grid-template-columns: 1fr; gap: 40px; }
   .hero-foot { flex-wrap: wrap; gap: 20px; }
@@ -816,6 +983,8 @@ a.detail-value:hover { color: var(--blue); }
   .contact-grid { grid-template-columns: 1fr; gap: 48px; }
   .form-row { grid-template-columns: 1fr; }
   .footer { flex-direction: column; align-items: flex-start; gap: 16px; padding: 28px 20px; }
+  .founders-grid { grid-template-columns: 1fr 1fr; }
+  .founder-story-block { padding: 40px 24px; }
 }
 </style>
 
@@ -825,14 +994,18 @@ a.detail-value:hover { color: var(--blue); }
 <!-- NAV -->
 <nav class="nav" id="nav">
   <a href="#" class="nav-logo">
-    <img src="assets/logosmall.png" >
+    <img src="assets/logosmall.png" alt="Underpass Media">
   </a>
-  <ul class="nav-links">
-    <li><a href="#services">Services</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#process">Process</a></li>
-    <li><a href="#contact" class="nav-btn">Let's Talk</a></li>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#services" onclick="closeMenu()">Services</a></li>
+    <li><a href="#about" onclick="closeMenu()">About</a></li>
+    <li><a href="#process" onclick="closeMenu()">Process</a></li>
+    <li><a href="#founders" onclick="closeMenu()">Our Story</a></li>
+    <li><a href="#contact" class="nav-btn" onclick="closeMenu()">Let's Talk</a></li>
   </ul>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Toggle navigation" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
 <!-- HERO -->
@@ -860,7 +1033,7 @@ a.detail-value:hover { color: var(--blue); }
       </p>
       <div class="hero-actions">
         <a href="#contact" class="btn-primary">
-          Start your project
+          Book a Free Brand Call
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
         <a href="#services" class="btn-outline">See what we do</a>
@@ -870,12 +1043,12 @@ a.detail-value:hover { color: var(--blue); }
   <div class="hero-foot">
     <div class="hero-foot-stat">
       <span class="hero-foot-num">3+</span>
-      <span class="hero-foot-label">Clients</span>
+      <span class="hero-foot-label">Brands worked with</span>
     </div>
     <div class="hero-foot-divider"></div>
     <div class="hero-foot-stat">
-      <span class="hero-foot-num">1</span>
-      <span class="hero-foot-label">Months</span>
+      <span class="hero-foot-num" style="font-size:17px;font-weight:700;">May 2026</span>
+      <span class="hero-foot-label">Founded</span>
     </div>
     <div class="hero-foot-divider"></div>
     <div class="hero-foot-stat">
@@ -944,7 +1117,7 @@ a.detail-value:hover { color: var(--blue); }
         <div class="svc-icon">
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="3" width="14" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M7 10h6M10 7v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
         </div>
-        <h3 class="svc-title">Design</h3>
+        <h3 class="svc-title">Brand Identity Design</h3>
         <p class="svc-desc">Visual identities, social templates, pitch decks, and print  designed with intention so your brand looks the same whether someone sees it on Instagram or a billboard.</p>
         <div class="svc-tags">
           <span class="svc-tag">Identity</span>
@@ -957,7 +1130,7 @@ a.detail-value:hover { color: var(--blue); }
         <div class="svc-icon">
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7" stroke="currentColor" stroke-width="1.5"/><path d="M10 6v4l3 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
         </div>
-        <h3 class="svc-title">Social Media</h3>
+        <h3 class="svc-title">Social Media Management</h3>
         <p class="svc-desc">Reels, carousels, stories, and static posts  produced on a consistent monthly cycle, crafted to grow real audiences. We plan, shoot, edit, and post. You grow.</p>
         <div class="svc-tags">
           <span class="svc-tag">Reels</span>
@@ -982,20 +1155,7 @@ a.detail-value:hover { color: var(--blue); }
           <p>Strategy before design. Always. We don't open a single file until we understand who your brand is talking to and what you want them to feel.</p>
         </div>
         <p class="about-pull">The best brands aren't built on logos — they're built on stories people actually believe.</p>
-        <div class="about-stats">
-          <div class="stat">
-            <div class="stat-n" data-target="4">0</div>
-            <div class="stat-l">Clients</div>
-          </div>
-          <div class="stat">
-            <div class="stat-n" data-target="1">0</div>
-            <div class="stat-l">Months</div>
-          </div>
-          <div class="stat">
-            <div class="stat-n" data-target="15">0</div>
-            <div class="stat-l">Posts</div>
-          </div>
-        </div>
+
       </div>
       <div class="about-right">
         <div class="belief reveal delay-1">
@@ -1008,7 +1168,7 @@ a.detail-value:hover { color: var(--blue); }
         </div>
         <div class="belief reveal delay-3">
           <p class="belief-q">Who we work best with</p>
-          <p class="belief-a">Founders with taste. Brands that want to be remembered. Teams who'd rather move fast and get it right than move slow and get it average.</p>
+          <p class="belief-a">We work best with founders who value thoughtful branding and long-term growth — people who understand that how you show up matters as much as what you're selling.</p>
         </div>
       </div>
     </div>
@@ -1050,6 +1210,48 @@ a.detail-value:hover { color: var(--blue); }
         <p class="step-desc">Monthly production cycles keep your brand active. We track what lands and use that to make the next month better.</p>
         <div class="step-bar"></div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOUNDERS -->
+<section class="section founders-bg" id="founders">
+  <div class="section-inner">
+    <div class="founders-header reveal">
+      <p class="eyebrow">Our story</p>
+      <h2 class="section-title">Four students.<br>One real agency.</h2>
+      <p class="founders-intro">Underpass Media was founded in May 2026 by four young creatives from Chandigarh who believed that great branding shouldn't be a privilege of big budgets. We started building brands for people around us — and haven't stopped since.</p>
+    </div>
+    <div class="founders-grid">
+      <div class="founder-card reveal delay-1">
+        <div class="founder-initials">HS</div>
+        <p class="founder-name">Harkanwal Singh</p>
+        <p class="founder-role">Content & Production · PEC</p>
+        <p class="founder-bio">Industrial & Product Design student at PEC. Drives content strategy and production — turning ideas into work that actually ships, on time and on brand.</p>
+      </div>
+      <div class="founder-card reveal delay-2">
+        <div class="founder-initials">AJ</div>
+        <p class="founder-name">Arnav Jolly</p>
+        <p class="founder-role">Brand Direction & Production · NIFT</p>
+        <p class="founder-bio">Fashion & communication student at NIFT. Leads brand direction and oversees production — ensuring every deliverable carries a coherent, intentional visual voice.</p>
+      </div>
+      <div class="founder-card reveal delay-3">
+        <div class="founder-initials">TS</div>
+        <p class="founder-name">Tejas Shrivastav</p>
+        <p class="founder-role">Operations & Growth · PEC</p>
+        <p class="founder-bio">Engineering student at PEC. Keeps the agency running — managing client relationships, tracking performance, and making sure nothing slips between strategy and delivery.</p>
+      </div>
+      <div class="founder-card reveal delay-4">
+        <div class="founder-initials">VD</div>
+        <p class="founder-name">Vedansh Dhangar</p>
+        <p class="founder-role">Creative & Art Direction · NID</p>
+        <p class="founder-bio">Design student at NID. Shapes the visual identity of every project — art directing shoots, building design systems, and making sure the work looks as sharp as the strategy behind it.</p>
+      </div>
+    </div>
+    <div class="founder-story-block reveal">
+      <p class="founder-story-label">Why we started</p>
+      <p class="founder-story-text">We kept seeing brands in Chandigarh with <em>real potential</em> — good products, genuine stories — showing up online like an afterthought. We started Underpass because we knew we could change that, and because we were tired of waiting to be old enough to try.</p>
+      <p class="founder-story-byline">We're young, we move fast, and we care about the work more than most agencies twice our size. Founded in May 2026, we're at the beginning — and that's exactly why the brands we work with get our full attention.</p>
     </div>
   </div>
 </section>
@@ -1138,10 +1340,11 @@ a.detail-value:hover { color: var(--blue); }
   <div class="footer-logo">
     <img src="assets/logo.png" alt="Underpass Media">
   </div>
-  <p class="footer-copy">© 2025 Underpass Media. All rights reserved.</p>
+  <p class="footer-copy">© 2026 Underpass Media. All rights reserved.</p>
   <ul class="footer-links">
     <li><a href="#services">Services</a></li>
     <li><a href="#about">About</a></li>
+    <li><a href="#founders">Our Story</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </footer>
@@ -1152,6 +1355,18 @@ a.detail-value:hover { color: var(--blue); }
   window.addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 50);
   }, { passive: true });
+
+  /* Hamburger menu */
+  function toggleMenu() {
+    const links = document.getElementById('navLinks');
+    const btn = document.getElementById('navHamburger');
+    links.classList.toggle('open');
+    btn.classList.toggle('open');
+  }
+  function closeMenu() {
+    document.getElementById('navLinks').classList.remove('open');
+    document.getElementById('navHamburger').classList.remove('open');
+  }
 
   /* Scroll reveal */
   const io = new IntersectionObserver((entries) => {
