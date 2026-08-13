@@ -373,6 +373,114 @@ body {
 }
 
 /* ══════════════════════════════════════════
+   VIDEOGRAPHY SECTION
+══════════════════════════════════════════ */
+.video-bg {
+  background: var(--off-black);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+/* Large feature video at top */
+.video-feature {
+  position: relative; overflow: hidden;
+  aspect-ratio: 16/7;
+  background: var(--panel);
+  margin-bottom: 3px;
+  cursor: pointer;
+}
+.video-feature video,
+.video-feature .vid-placeholder {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.6s ease;
+}
+.video-feature:hover video {
+  transform: scale(1.05);
+}
+.video-feature-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to right, rgba(8,8,8,0.65) 0%, rgba(8,8,8,0.1) 60%);
+  display: flex; align-items: flex-end;
+  padding: 48px;
+  pointer-events: none;
+  z-index: 2;
+}
+.video-feature-tag {
+  font-family: var(--space);
+  font-size: 9px; font-weight: 500;
+  letter-spacing: 0.24em; text-transform: uppercase;
+  color: var(--cream); opacity: 0.45;
+  margin-bottom: 10px;
+}
+.video-feature-title {
+  font-family: var(--poppins);
+  font-size: clamp(22px, 3vw, 38px);
+  font-weight: 700; letter-spacing: -0.025em;
+  color: var(--cream);
+  line-height: 1.05;
+}
+
+/* Video grid — 3 col */
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3px;
+  margin-top: 3px;
+}
+.video-tile {
+  position: relative; overflow: hidden;
+  aspect-ratio: 3/4;
+  background: var(--panel);
+  cursor: pointer;
+}
+.video-tile video,
+.video-tile .vid-placeholder { 
+  width: 100%; height: 100%; object-fit: cover; 
+  transition: transform 0.6s ease;
+}
+.video-tile:hover video {
+  transform: scale(1.05);
+}
+.video-tile-overlay {
+  position: absolute; inset: 0;
+  background: rgba(8,8,8,0.25);
+  display: flex; align-items: flex-end;
+  padding: 20px;
+  transition: background 0.3s;
+  pointer-events: none;
+  z-index: 2;
+}
+.video-tile:hover .video-tile-overlay { background: rgba(8,8,8,0.45); }
+.video-tile-cat {
+  font-family: var(--space);
+  font-size: 9px; font-weight: 500;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--cream); opacity: 0.4;
+  margin-bottom: 4px;
+}
+.video-tile-name {
+  font-family: var(--poppins);
+  font-size: 15px; font-weight: 700;
+  color: var(--cream); letter-spacing: -0.01em;
+}
+
+/* Placeholder video tile */
+.vid-placeholder {
+  width: 100%; height: 100%;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 10px;
+  background: #0D0D0D;
+  border: 1px dashed rgba(255,255,255,0.06);
+}
+.vid-placeholder svg { opacity: 0.1; }
+.vid-placeholder span {
+  font-family: var(--space);
+  font-size: 9px; font-weight: 500;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--cream); opacity: 0.12;
+}
+
+/* ══════════════════════════════════════════
    PHOTOGRAPHY SECTION — ADKO-style editorial grid
 ══════════════════════════════════════════ */
 .photo-bg {
@@ -455,130 +563,6 @@ body {
 }
 .photo-placeholder svg { opacity: 0.12; }
 .photo-placeholder span {
-  font-family: var(--space);
-  font-size: 9px; font-weight: 500;
-  letter-spacing: 0.2em; text-transform: uppercase;
-  color: var(--cream); opacity: 0.12;
-}
-
-/* ══════════════════════════════════════════
-   VIDEOGRAPHY SECTION
-══════════════════════════════════════════ */
-.video-bg {
-  background: var(--off-black);
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-}
-
-/* Large feature video at top */
-.video-feature {
-  position: relative; overflow: hidden;
-  aspect-ratio: 16/7;
-  background: var(--panel);
-  margin-bottom: 3px;
-  cursor: pointer;
-}
-.video-feature video,
-.video-feature .vid-placeholder {
-  width: 100%; height: 100%; object-fit: cover;
-}
-.video-feature-overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(to right, rgba(8,8,8,0.65) 0%, rgba(8,8,8,0.1) 60%);
-  display: flex; align-items: flex-end;
-  padding: 48px;
-}
-.video-feature-tag {
-  font-family: var(--space);
-  font-size: 9px; font-weight: 500;
-  letter-spacing: 0.24em; text-transform: uppercase;
-  color: var(--cream); opacity: 0.45;
-  margin-bottom: 10px;
-}
-.video-feature-title {
-  font-family: var(--poppins);
-  font-size: clamp(22px, 3vw, 38px);
-  font-weight: 700; letter-spacing: -0.025em;
-  color: var(--cream);
-  line-height: 1.05;
-}
-
-/* Play button */
-.play-btn {
-  position: absolute; top: 50%; left: 50%;
-  transform: translate(-50%,-50%);
-  width: 64px; height: 64px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.12);
-  border: 1px solid rgba(255,255,255,0.25);
-  backdrop-filter: blur(8px);
-  display: flex; align-items: center; justify-content: center;
-  transition: background 0.2s, transform 0.2s;
-  pointer-events: none;
-}
-.video-feature:hover .play-btn {
-  background: rgba(25,115,192,0.5);
-  transform: translate(-50%,-50%) scale(1.1);
-}
-.play-btn svg { margin-left: 4px; }
-
-/* Video grid — 3 col */
-.video-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 3px;
-  margin-top: 3px;
-}
-.video-tile {
-  position: relative; overflow: hidden;
-  aspect-ratio: 3/4;
-  background: var(--panel);
-  cursor: pointer;
-}
-.video-tile video,
-.video-tile .vid-placeholder { width: 100%; height: 100%; object-fit: cover; }
-.video-tile-overlay {
-  position: absolute; inset: 0;
-  background: rgba(8,8,8,0.25);
-  display: flex; align-items: flex-end;
-  padding: 20px;
-  transition: background 0.3s;
-}
-.video-tile:hover .video-tile-overlay { background: rgba(8,8,8,0.45); }
-.video-tile-meta { }
-.video-tile-cat {
-  font-family: var(--space);
-  font-size: 9px; font-weight: 500;
-  letter-spacing: 0.2em; text-transform: uppercase;
-  color: var(--cream); opacity: 0.4;
-  margin-bottom: 4px;
-}
-.video-tile-name {
-  font-family: var(--poppins);
-  font-size: 15px; font-weight: 700;
-  color: var(--cream); letter-spacing: -0.01em;
-}
-.video-tile-play {
-  position: absolute; top: 16px; right: 16px;
-  width: 36px; height: 36px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.1);
-  border: 1px solid rgba(255,255,255,0.2);
-  display: flex; align-items: center; justify-content: center;
-  transition: background 0.2s;
-}
-.video-tile:hover .video-tile-play { background: rgba(25,115,192,0.6); }
-
-/* Placeholder video tile */
-.vid-placeholder {
-  width: 100%; height: 100%;
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center; gap: 10px;
-  background: #0D0D0D;
-  border: 1px dashed rgba(255,255,255,0.06);
-}
-.vid-placeholder svg { opacity: 0.1; }
-.vid-placeholder span {
   font-family: var(--space);
   font-size: 9px; font-weight: 500;
   letter-spacing: 0.2em; text-transform: uppercase;
@@ -979,8 +963,8 @@ a.detail-value:hover { color: var(--blue); }
   </a>
   <ul class="nav-links" id="navLinks">
     <li><a href="#services" onclick="closeMenu()">Services</a></li>
-    <li><a href="#photography" onclick="closeMenu()">Photography</a></li>
     <li><a href="#videography" onclick="closeMenu()">Film</a></li>
+    <li><a href="#photography" onclick="closeMenu()">Photography</a></li>
     <li><a href="#founders" onclick="closeMenu()">Our Story</a></li>
     <li><a href="#contact" class="nav-btn" onclick="closeMenu()">Let's Talk</a></li>
   </ul>
@@ -1152,7 +1136,75 @@ a.detail-value:hover { color: var(--blue); }
   </div>
 </section>
 
-<!-- ══ PHOTOGRAPHY ══ -->
+<!-- ══ VIDEOGRAPHY (FILM) SECTION ══ -->
+<section class="section video-bg" id="videography">
+  <div class="section-inner">
+    <div class="portfolio-header reveal">
+      <div>
+        <p class="eyebrow">Motion work</p>
+        <h2 class="section-title">Film.</h2>
+      </div>
+      <a href="#contact" class="portfolio-link">
+        Discuss a production
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+
+    <!-- Feature video -->
+    <div class="video-feature reveal">
+      <video src="assets/assets-showreel.mp4" autoplay muted loop playsinline></video>
+      <div class="video-feature-overlay">
+        <div>
+          <p class="video-feature-tag">Showreel · 2026</p>
+          <h3 class="video-feature-title">Underpass Media<br>Showreel</h3>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3-col video tiles -->
+    <div class="video-grid">
+
+      <div class="video-tile reveal delay-1">
+        <div class="vid-placeholder">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M5 3l14 9-14 9V3z" stroke="white" stroke-width="1.5" stroke-linejoin="round"/></svg>
+          <span>Add video</span>
+        </div>
+        <div class="video-tile-overlay">
+          <div class="video-tile-meta">
+            <p class="video-tile-cat">Brand Film</p>
+            <p class="video-tile-name">Dr. Naiya Bansal</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="video-tile reveal delay-2">
+        <video src="assets/lemmora1.mp4" autoplay muted loop playsinline></video>
+        <div class="video-tile-overlay">
+          <div class="video-tile-meta">
+            <p class="video-tile-cat">Campaign Reel</p>
+            <p class="video-tile-name">La Femmora</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="video-tile reveal delay-3">
+        <div class="vid-placeholder">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M5 3l14 9-14 9V3z" stroke="white" stroke-width="1.5" stroke-linejoin="round"/></svg>
+          <span>Add video</span>
+        </div>
+        <div class="video-tile-overlay">
+          <div class="video-tile-meta">
+            <p class="video-tile-cat">Social Reel</p>
+            <p class="video-tile-name">Coming Soon</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ PHOTOGRAPHY SECTION ══ -->
 <section class="section photo-bg" id="photography">
   <div class="section-inner">
     <div class="portfolio-header reveal">
@@ -1166,16 +1218,14 @@ a.detail-value:hover { color: var(--blue); }
       </a>
     </div>
 
-    <!-- PHOTO GRID — replace src="" with your actual image paths -->
+    <!-- PHOTO GRID -->
     <div class="photo-grid reveal">
-<!-- <img src="assets/Lafamora1.jpeg" alt="Underpass Media">
       <!-- Tile A — large hero image -->
       <div class="photo-tile pt-a">
         <div class="photo-placeholder">
-           <img src="assets/Pic_Naiya_bansal.jpeg" alt="Doctor">
-          <svg  width="32" height="32" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="white" stroke-width="1.5"/><circle cx="12" cy="12" r="3" stroke="white" stroke-width="1.5"/><path d="M7 5l1.5-2h7L17 5" stroke="white" stroke-width="1.5"/></svg>
+          <img src="assets/Pic_Naiya_bansal.jpeg" alt="Doctor">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="white" stroke-width="1.5"/><circle cx="12" cy="12" r="3" stroke="white" stroke-width="1.5"/><path d="M7 5l1.5-2h7L17 5" stroke="white" stroke-width="1.5"/></svg>
           <span>Add photo</span>
-           
         </div>
         <span class="photo-tile-label">Product · Dr. Naiya Bansal</span>
       </div>
@@ -1183,7 +1233,7 @@ a.detail-value:hover { color: var(--blue); }
       <!-- Tile B -->
       <div class="photo-tile pt-b">
         <div class="photo-placeholder">
-            <img src="assets/Lafamora1.jpeg" alt="Food">
+          <img src="assets/Lafamora1.jpeg" alt="Food">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="white" stroke-width="1.5"/><circle cx="12" cy="12" r="3" stroke="white" stroke-width="1.5"/></svg>
           <span>Add photo</span>
         </div>
@@ -1193,7 +1243,7 @@ a.detail-value:hover { color: var(--blue); }
       <!-- Tile C -->
       <div class="photo-tile pt-c">
         <div class="photo-placeholder">
-             <img src="assets/PortraitSample.jpeg" alt="Doctor">
+          <img src="assets/PortraitSample.jpeg" alt="Doctor">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="white" stroke-width="1.5"/><circle cx="12" cy="12" r="3" stroke="white" stroke-width="1.5"/></svg>
           <span>Add photo</span>
         </div>
@@ -1246,89 +1296,6 @@ a.detail-value:hover { color: var(--blue); }
       </div>
 
     </div>
-    <!-- How to add your images: replace the <div class="photo-placeholder">...</div> inside each .photo-tile with <img src="your-image.jpg" alt="description"> -->
-  </div>
-</section>
-
-<!-- ══ VIDEOGRAPHY ══ -->
-<section class="section video-bg" id="videography">
-  <div class="section-inner">
-    <div class="portfolio-header reveal">
-      <div>
-        <p class="eyebrow">Motion work</p>
-        <h2 class="section-title">Film.</h2>
-      </div>
-      <a href="#contact" class="portfolio-link">
-        Discuss a production
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
-    </div>
-
-    <!-- Feature video — replace src with your video file or embed URL -->
-    <div class="video-feature reveal">
-      <!-- To use your video: <video src="assets-showreel.mp4" autoplay muted loop playsinline></video> -->
-      <video src="/assets/assets-showreel.mp4" autoplay muted loop playsinline></video>
-      <div class="video-feature-overlay">
-        <div>
-          <p class="video-feature-tag">Showreel · 2026</p>
-          <h3 class="video-feature-title">Underpass Media<br>Showreel</h3>
-        </div>
-      </div>
-      <div class="play-btn">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 3l14 9-14 9V3z" fill="white"/></svg>
-      </div>
-    </div>
-
-    <!-- 3-col video tiles — replace placeholders with actual content -->
-    <div class="video-grid">
-
-      <div class="video-tile reveal delay-1">
-        <div class="vid-placeholder">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M5 3l14 9-14 9V3z" stroke="white" stroke-width="1.5" stroke-linejoin="round"/></svg>
-          <span>Add video</span>
-        </div>
-        <div class="video-tile-overlay">
-          <div class="video-tile-meta">
-            <p class="video-tile-cat">Brand Film</p>
-            <p class="video-tile-name">Dr. Naiya Bansal</p>
-          </div>
-        </div>
-        <div class="video-tile-play">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 3l14 9-14 9V3z" fill="white"/></svg>
-        </div>
-      </div>
-
-      <div class="video-tile reveal delay-2">
-        <video src="assets/lemmora1.mp4" autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover;"></video>
-        <div class="video-tile-overlay">
-          <div class="video-tile-meta">
-            <p class="video-tile-cat">Campaign Reel</p>
-            <p class="video-tile-name">La Femmora</p>
-          </div>
-        </div>
-        <div class="video-tile-play">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 3l14 9-14 9V3z" fill="white"/></svg>
-        </div>
-      </div>
-
-      <div class="video-tile reveal delay-3">
-        <div class="vid-placeholder">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M5 3l14 9-14 9V3z" stroke="white" stroke-width="1.5" stroke-linejoin="round"/></svg>
-          <span>Add video</span>
-        </div>
-        <div class="video-tile-overlay">
-          <div class="video-tile-meta">
-            <p class="video-tile-cat">Social Reel</p>
-            <p class="video-tile-name">Coming Soon</p>
-          </div>
-        </div>
-        <div class="video-tile-play">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 3l14 9-14 9V3z" fill="white"/></svg>
-        </div>
-      </div>
-
-    </div>
-    <!-- How to add your videos: replace the <div class="vid-placeholder">...</div> inside each tile with <video src="your-clip.mp4" autoplay muted loop playsinline></video> -->
   </div>
 </section>
 
@@ -1499,8 +1466,8 @@ a.detail-value:hover { color: var(--blue); }
   <p class="footer-copy">© 2026 Underpass Media. All rights reserved.</p>
   <ul class="footer-links">
     <li><a href="#services">Services</a></li>
-    <li><a href="#photography">Photography</a></li>
     <li><a href="#videography">Film</a></li>
+    <li><a href="#photography">Photography</a></li>
     <li><a href="#founders">Our Story</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
