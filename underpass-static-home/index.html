@@ -9,11 +9,9 @@
 <meta property="og:description" content="Creative studio based in Chandigarh. Brand strategy, identity design, and social media management for brands that want to be remembered.">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap" rel="stylesheet">
-
 <style>
 /* ══════════════════════════════════════════
    RESET
@@ -23,7 +21,6 @@ html { scroll-behavior: smooth; font-size: 16px; }
 img { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
 button { font-family: inherit; cursor: pointer; border: none; background: none; }
-
 /* ══════════════════════════════════════════
    TOKENS
 ══════════════════════════════════════════ */
@@ -39,12 +36,10 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   --red:       #EF4B3C;
   --muted:     rgba(255,255,255,0.36);
   --muted2:    rgba(255,255,255,0.18);
-
   --poppins:   'Poppins', sans-serif;
   --space:     'Space Grotesk', sans-serif;
   --cormorant: 'Cormorant Garamond', serif;
 }
-
 /* ══════════════════════════════════════════
    BASE
 ══════════════════════════════════════════ */
@@ -55,7 +50,6 @@ body {
   line-height: 1.65;
   overflow-x: hidden;
 }
-
 /* ══════════════════════════════════════════
    NAV
 ══════════════════════════════════════════ */
@@ -94,7 +88,6 @@ body {
   transition: border-color 0.2s, background 0.2s !important;
 }
 .nav-btn:hover { border-color: rgba(255,255,255,0.7) !important; background: rgba(255,255,255,0.06) !important; }
-
 /* ══════════════════════════════════════════
    HERO
 ══════════════════════════════════════════ */
@@ -150,7 +143,6 @@ body {
 }
 .hero-desc strong { opacity: 1; font-weight: 500; color: var(--cream); }
 .hero-actions { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
-
 /* ── BUTTONS ── */
 .btn-primary {
   display: inline-flex; align-items: center; gap: 8px;
@@ -165,7 +157,6 @@ body {
 .btn-primary:hover { background: var(--blue-lt); transform: translateY(-1px); }
 .btn-primary svg { transition: transform 0.2s; }
 .btn-primary:hover svg { transform: translateX(3px); }
-
 .btn-outline {
   display: inline-flex; align-items: center; gap: 8px;
   font-family: var(--space); font-size: 13px; font-weight: 400;
@@ -175,7 +166,6 @@ body {
   transition: opacity 0.2s;
 }
 .btn-outline:hover { opacity: 0.75; }
-
 /* Hero foot */
 .hero-foot {
   display: flex; align-items: center; justify-content: space-between;
@@ -201,7 +191,6 @@ body {
   color: var(--cream); opacity: 0.22;
 }
 .scroll-line { width: 36px; height: 1px; background: rgba(255,255,255,0.2); }
-
 /* ══════════════════════════════════════════
    TICKER
 ══════════════════════════════════════════ */
@@ -225,7 +214,6 @@ body {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
 }
-
 /* ══════════════════════════════════════════
    SECTION SHARED
 ══════════════════════════════════════════ */
@@ -244,14 +232,12 @@ body {
   letter-spacing: -0.03em;
   color: var(--cream);
 }
-
 .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
 .reveal.in { opacity: 1; transform: none; }
 .delay-1 { transition-delay: 0.08s; }
 .delay-2 { transition-delay: 0.16s; }
 .delay-3 { transition-delay: 0.24s; }
 .delay-4 { transition-delay: 0.32s; }
-
 /* ══════════════════════════════════════════
    SERVICES
 ══════════════════════════════════════════ */
@@ -321,7 +307,6 @@ body {
   transition: border-color 0.2s, color 0.2s, opacity 0.2s;
 }
 .svc:hover .svc-tag { border-color: rgba(25,115,192,0.4); color: var(--blue); opacity: 1; }
-
 /* ══════════════════════════════════════════
    ABOUT — dark panel
 ══════════════════════════════════════════ */
@@ -371,7 +356,6 @@ body {
   font-size: 13px; font-weight: 300;
   color: var(--cream); opacity: 0.35; line-height: 1.8;
 }
-
 /* ══════════════════════════════════════════
    VIDEOGRAPHY SECTION
 ══════════════════════════════════════════ */
@@ -380,7 +364,6 @@ body {
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
 }
-
 /* Large feature video at top */
 .video-feature {
   position: relative; overflow: hidden;
@@ -388,6 +371,7 @@ body {
   background: var(--panel);
   margin-bottom: 3px;
   cursor: pointer;
+  display: block;
 }
 .video-feature video,
 .video-feature .vid-placeholder {
@@ -419,7 +403,6 @@ body {
   color: var(--cream);
   line-height: 1.05;
 }
-
 /* Video grid — 3 col */
 .video-grid {
   display: grid;
@@ -432,6 +415,7 @@ body {
   aspect-ratio: 3/4;
   background: var(--panel);
   cursor: pointer;
+  display: block;
 }
 .video-tile video,
 .video-tile .vid-placeholder { 
@@ -463,7 +447,6 @@ body {
   font-size: 15px; font-weight: 700;
   color: var(--cream); letter-spacing: -0.01em;
 }
-
 /* Placeholder video tile */
 .vid-placeholder {
   width: 100%; height: 100%;
@@ -479,7 +462,6 @@ body {
   letter-spacing: 0.2em; text-transform: uppercase;
   color: var(--cream); opacity: 0.12;
 }
-
 /* ══════════════════════════════════════════
    PHOTOGRAPHY SECTION — ADKO-style editorial grid
 ══════════════════════════════════════════ */
@@ -504,7 +486,6 @@ body {
 .portfolio-link:hover { opacity: 0.8; }
 .portfolio-link svg { transition: transform 0.2s; }
 .portfolio-link:hover svg { transform: translateX(4px); }
-
 /* Masonry-style photo grid — ADKO mixed sizes */
 .photo-grid {
   display: grid;
@@ -542,7 +523,6 @@ body {
   z-index: 2;
 }
 .photo-tile:hover .photo-tile-label { opacity: 0.75; transform: none; }
-
 /* Grid layout — different column/row spans for ADKO-style variety */
 .pt-a { grid-column: span 5; grid-row: span 5; } /* large */
 .pt-b { grid-column: span 4; grid-row: span 3; } /* medium */
@@ -552,7 +532,6 @@ body {
 .pt-f { grid-column: span 5; grid-row: span 3; } /* wide */
 .pt-g { grid-column: span 4; grid-row: span 2; } /* small */
 .pt-h { grid-column: span 3; grid-row: span 4; } /* tall */
-
 /* Placeholder tiles with stylised empty state */
 .photo-placeholder {
   width: 100%; height: 100%;
@@ -568,7 +547,6 @@ body {
   letter-spacing: 0.2em; text-transform: uppercase;
   color: var(--cream); opacity: 0.12;
 }
-
 /* ══════════════════════════════════════════
    PROCESS
 ══════════════════════════════════════════ */
@@ -627,7 +605,6 @@ body {
   transition: transform 0.4s ease;
 }
 .step:hover .step-bar { transform: scaleX(1); }
-
 /* ══════════════════════════════════════════
    FOUNDERS
 ══════════════════════════════════════════ */
@@ -690,7 +667,6 @@ body {
   font-size: 13px; font-weight: 300;
   color: var(--cream); opacity: 0.35; line-height: 1.8;
 }
-
 /* Founder story block */
 .founder-story-block {
   background: var(--panel);
@@ -724,7 +700,6 @@ body {
   color: var(--cream); opacity: 0.32;
   margin-top: 28px; line-height: 1.9; max-width: 640px;
 }
-
 /* ══════════════════════════════════════════
    CTA BAND
 ══════════════════════════════════════════ */
@@ -771,7 +746,6 @@ body {
 .btn-white:hover { transform: translateY(-2px); background: #fff; }
 .btn-white svg { transition: transform 0.2s; }
 .btn-white:hover svg { transform: translateX(3px); }
-
 /* ══════════════════════════════════════════
    CONTACT
 ══════════════════════════════════════════ */
@@ -802,7 +776,6 @@ body {
   color: var(--cream); transition: color 0.2s;
 }
 a.detail-value:hover { color: var(--blue); }
-
 /* FORM */
 .form { display: flex; flex-direction: column; gap: 16px; }
 .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
@@ -859,7 +832,6 @@ a.detail-value:hover { color: var(--blue); }
   border-radius: 4px;
   font-family: var(--space); color: #C87070; font-size: 12px; line-height: 1.6;
 }
-
 /* ══════════════════════════════════════════
    FOOTER
 ══════════════════════════════════════════ */
@@ -879,7 +851,6 @@ a.detail-value:hover { color: var(--blue); }
   transition: opacity 0.2s;
 }
 .footer-links a:hover { opacity: 0.7; }
-
 /* ══════════════════════════════════════════
    HAMBURGER
 ══════════════════════════════════════════ */
@@ -895,7 +866,6 @@ a.detail-value:hover { color: var(--blue); }
 .nav-hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); opacity: 1; }
 .nav-hamburger.open span:nth-child(2) { opacity: 0; }
 .nav-hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); opacity: 1; }
-
 /* ══════════════════════════════════════════
    MOBILE
 ══════════════════════════════════════════ */
@@ -955,7 +925,6 @@ a.detail-value:hover { color: var(--blue); }
 </style>
 </head>
 <body>
-
 <!-- NAV -->
 <nav class="nav" id="nav">
   <a href="#" class="nav-logo">
@@ -972,7 +941,6 @@ a.detail-value:hover { color: var(--blue); }
     <span></span><span></span><span></span>
   </button>
 </nav>
-
 <!-- HERO -->
 <section class="hero">
   <div class="hero-body">
@@ -1024,7 +992,6 @@ a.detail-value:hover { color: var(--blue); }
     </div>
   </div>
 </section>
-
 <!-- TICKER -->
 <div class="ticker-wrap">
   <div class="ticker-track">
@@ -1050,7 +1017,6 @@ a.detail-value:hover { color: var(--blue); }
     </div>
   </div>
 </div>
-
 <!-- SERVICES -->
 <section class="section services-bg" id="services">
   <div class="section-inner">
@@ -1104,7 +1070,6 @@ a.detail-value:hover { color: var(--blue); }
     </div>
   </div>
 </section>
-
 <!-- ABOUT -->
 <section class="section about-bg" id="about">
   <div class="section-inner">
@@ -1135,7 +1100,6 @@ a.detail-value:hover { color: var(--blue); }
     </div>
   </div>
 </section>
-
 <!-- ══ VIDEOGRAPHY (FILM) SECTION ══ -->
 <section class="section video-bg" id="videography">
   <div class="section-inner">
@@ -1149,7 +1113,6 @@ a.detail-value:hover { color: var(--blue); }
         <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
     </div>
-
     <!-- Feature video -->
     <div class="video-feature reveal">
       <video src="assets/assets-showreel.mp4" autoplay muted loop playsinline></video>
@@ -1160,10 +1123,8 @@ a.detail-value:hover { color: var(--blue); }
         </div>
       </div>
     </div>
-
     <!-- 3-col video tiles -->
     <div class="video-grid">
-
       <div class="video-tile reveal delay-1">
         <div class="vid-placeholder">
           <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M5 3l14 9-14 9V3z" stroke="white" stroke-width="1.5" stroke-linejoin="round"/></svg>
@@ -1176,17 +1137,16 @@ a.detail-value:hover { color: var(--blue); }
           </div>
         </div>
       </div>
-
-      <div class="video-tile reveal delay-2">
+      <!-- La Femmora Tile linked to Instagram Reel -->
+      <a href="https://www.instagram.com/reel/DbdSVVWt-s8/?igsh=MXpvZmxkbGh3bjho" target="_blank" rel="noopener noreferrer" class="video-tile reveal delay-2">
         <video src="assets/lemmora1.mp4" autoplay muted loop playsinline></video>
         <div class="video-tile-overlay">
           <div class="video-tile-meta">
-            <p class="video-tile-cat">Campaign Reel</p>
+            <p class="video-tile-cat">Campaign Reel ↗</p>
             <p class="video-tile-name">La Femmora</p>
           </div>
         </div>
-      </div>
-
+      </a>
       <div class="video-tile reveal delay-3">
         <div class="vid-placeholder">
           <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M5 3l14 9-14 9V3z" stroke="white" stroke-width="1.5" stroke-linejoin="round"/></svg>
@@ -1199,11 +1159,9 @@ a.detail-value:hover { color: var(--blue); }
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </section>
-
 <!-- ══ PHOTOGRAPHY SECTION ══ -->
 <section class="section photo-bg" id="photography">
   <div class="section-inner">
@@ -1217,7 +1175,6 @@ a.detail-value:hover { color: var(--blue); }
         <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
     </div>
-
     <!-- PHOTO GRID -->
     <div class="photo-grid reveal">
       <!-- Tile A — large hero image -->
@@ -1229,7 +1186,6 @@ a.detail-value:hover { color: var(--blue); }
         </div>
         <span class="photo-tile-label">Product · Dr. Naiya Bansal</span>
       </div>
-
       <!-- Tile B -->
       <div class="photo-tile pt-b">
         <div class="photo-placeholder">
@@ -1239,7 +1195,6 @@ a.detail-value:hover { color: var(--blue); }
         </div>
         <span class="photo-tile-label">Brand · La Femmora</span>
       </div>
-
       <!-- Tile C -->
       <div class="photo-tile pt-c">
         <div class="photo-placeholder">
@@ -1249,7 +1204,6 @@ a.detail-value:hover { color: var(--blue); }
         </div>
         <span class="photo-tile-label">Portrait</span>
       </div>
-
       <!-- Tile D -->
       <div class="photo-tile pt-d">
         <div class="photo-placeholder">
@@ -1258,7 +1212,6 @@ a.detail-value:hover { color: var(--blue); }
         </div>
         <span class="photo-tile-label">Lifestyle</span>
       </div>
-
       <!-- Tile E -->
       <div class="photo-tile pt-e">
         <div class="photo-placeholder">
@@ -1267,7 +1220,6 @@ a.detail-value:hover { color: var(--blue); }
         </div>
         <span class="photo-tile-label">Editorial</span>
       </div>
-
       <!-- Tile F — wide -->
       <div class="photo-tile pt-f">
         <div class="photo-placeholder">
@@ -1276,7 +1228,6 @@ a.detail-value:hover { color: var(--blue); }
         </div>
         <span class="photo-tile-label">Campaign</span>
       </div>
-
       <!-- Tile G -->
       <div class="photo-tile pt-g">
         <div class="photo-placeholder">
@@ -1285,7 +1236,6 @@ a.detail-value:hover { color: var(--blue); }
         </div>
         <span class="photo-tile-label">F&amp;B</span>
       </div>
-
       <!-- Tile H — tall -->
       <div class="photo-tile pt-h">
         <div class="photo-placeholder">
@@ -1294,11 +1244,9 @@ a.detail-value:hover { color: var(--blue); }
         </div>
         <span class="photo-tile-label">Architecture</span>
       </div>
-
     </div>
   </div>
 </section>
-
 <!-- PROCESS -->
 <section class="section process-bg" id="process">
   <div class="section-inner">
@@ -1337,7 +1285,6 @@ a.detail-value:hover { color: var(--blue); }
     </div>
   </div>
 </section>
-
 <!-- FOUNDERS -->
 <section class="section founders-bg" id="founders">
   <div class="section-inner">
@@ -1379,7 +1326,6 @@ a.detail-value:hover { color: var(--blue); }
     </div>
   </div>
 </section>
-
 <!-- CTA BAND -->
 <div class="cta-band reveal">
   <div>
@@ -1391,7 +1337,6 @@ a.detail-value:hover { color: var(--blue); }
     <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
   </a>
 </div>
-
 <!-- CONTACT -->
 <section class="section contact-bg" id="contact">
   <div class="section-inner">
@@ -1457,7 +1402,6 @@ a.detail-value:hover { color: var(--blue); }
     </div>
   </div>
 </section>
-
 <!-- FOOTER -->
 <footer class="footer">
   <div class="footer-logo">
@@ -1472,14 +1416,12 @@ a.detail-value:hover { color: var(--blue); }
     <li><a href="#contact">Contact</a></li>
   </ul>
 </footer>
-
 <script>
   /* Nav */
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 50);
   }, { passive: true });
-
   /* Hamburger */
   function toggleMenu() {
     document.getElementById('navLinks').classList.toggle('open');
@@ -1489,7 +1431,6 @@ a.detail-value:hover { color: var(--blue); }
     document.getElementById('navLinks').classList.remove('open');
     document.getElementById('navHamburger').classList.remove('open');
   }
-
   /* Scroll reveal */
   const io = new IntersectionObserver((entries) => {
     entries.forEach(e => {
@@ -1497,7 +1438,6 @@ a.detail-value:hover { color: var(--blue); }
     });
   }, { threshold: 0.08 });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-
   /* Counter */
   const co = new IntersectionObserver((entries) => {
     entries.forEach(e => {
@@ -1514,7 +1454,6 @@ a.detail-value:hover { color: var(--blue); }
     });
   }, { threshold: 0.5 });
   document.querySelectorAll('.stat-n[data-target]').forEach(el => co.observe(el));
-
   /* Contact form */
   document.getElementById('contactForm').addEventListener('submit', async function(e) {
     e.preventDefault();
