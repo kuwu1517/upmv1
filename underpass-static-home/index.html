@@ -529,14 +529,14 @@ body {
 }
 .photo-tile:hover .photo-tile-label { opacity: 0.75; transform: none; }
 
-/* Grid layout — Tile D & Tile E equal size */
+/* Grid layout — Tile G updated to 4:5 ratio */
 .pt-a { grid-column: span 5; grid-row: span 5; } /* large */
 .pt-b { grid-column: span 4; grid-row: span 3; } /* medium */
 .pt-c { grid-column: span 3; grid-row: span 3; } /* medium-sm */
 .pt-d { grid-column: span 3; grid-row: span 3; } /* equal ratio to E */
 .pt-e { grid-column: span 3; grid-row: span 3; } /* equal ratio to D */
 .pt-f { grid-column: span 5; grid-row: span 3; } /* wide */
-.pt-g { grid-column: span 4; grid-row: span 2; } /* small */
+.pt-g { grid-column: span 4; grid-row: span 5; } /* 4:5 ratio */
 .pt-h { grid-column: span 3; grid-row: span 4; } /* tall */
 
 /* ══════════════════════════════════════════
@@ -901,7 +901,7 @@ a.detail-value:hover { color: var(--blue); }
   .pt-d { grid-column: span 3; grid-row: span 3; }
   .pt-e { grid-column: span 3; grid-row: span 3; }
   .pt-f { grid-column: span 6; grid-row: span 3; }
-  .pt-g { grid-column: span 3; grid-row: span 2; }
+  .pt-g { grid-column: span 3; grid-row: span 4; }
   .pt-h { grid-column: span 3; grid-row: span 4; }
   .video-feature-overlay { padding: 24px; }
   .video-grid { grid-template-columns: 1fr; }
@@ -1199,13 +1199,13 @@ a.detail-value:hover { color: var(--blue); }
         <span class="photo-tile-label">Portrait</span>
       </div>
 
-      <!-- Tile D — Ambience (Equal Size to E) -->
+      <!-- Tile D — Ambience -->
       <div class="photo-tile pt-d">
         <img src="assets/ambience.jpg" alt="Ambience · Restaurant">
         <span class="photo-tile-label">Ambience · Restaurant</span>
       </div>
 
-      <!-- Tile E — Editorial (Equal Size to D) -->
+      <!-- Tile E — Editorial -->
       <div class="photo-tile pt-e">
         <img src="assets/brand.jpg" alt="Editorial">
         <span class="photo-tile-label">Editorial</span>
@@ -1217,7 +1217,7 @@ a.detail-value:hover { color: var(--blue); }
         <span class="photo-tile-label">Campaign · Mock Shoot</span>
       </div>
 
-      <!-- Tile G — F&B -->
+      <!-- Tile G — F&B (Updated to 4:5 Ratio) -->
       <div class="photo-tile pt-g">
         <img src="assets/lafemmora2.jpg" alt="F&B">
         <span class="photo-tile-label">F&amp;B</span>
