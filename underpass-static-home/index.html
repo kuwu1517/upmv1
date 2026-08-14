@@ -98,65 +98,6 @@ body {
 }
 
 /* ══════════════════════════════════════════
-   CUSTOM INTERACTIVE MAGNETIC CURSOR
-══════════════════════════════════════════ */
-@media (min-width: 992px) {
-  body { cursor: default; }
-  
-  .custom-cursor {
-    position: fixed;
-    top: 0; left: 0;
-    width: 8px; height: 8px;
-    background: var(--blue);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 10000;
-    transform: translate(-50%, -50%);
-    transition: width 0.2s, height 0.2s, background-color 0.2s, opacity 0.2s;
-  }
-  
-  .custom-cursor-follower {
-    position: fixed;
-    top: 0; left: 0;
-    width: 36px; height: 36px;
-    border: 1px solid rgba(25, 115, 192, 0.4);
-    background: rgba(25, 115, 192, 0.05);
-    backdrop-filter: blur(2px);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9999;
-    transform: translate(-50%, -50%);
-    display: flex; align-items: center; justify-content: center;
-    font-family: var(--space);
-    font-size: 8px; font-weight: 700;
-    letter-spacing: 0.1em;
-    color: var(--blue);
-    transition: width 0.25s cubic-bezier(0.16, 1, 0.3, 1), 
-                height 0.25s cubic-bezier(0.16, 1, 0.3, 1), 
-                border-color 0.25s, background-color 0.25s, opacity 0.2s;
-    text-transform: uppercase;
-    white-space: nowrap;
-  }
-  
-  .custom-cursor-follower.hover-active {
-    width: 68px; height: 68px;
-    background: rgba(25, 115, 192, 0.9);
-    border-color: var(--blue);
-    color: #fff;
-    box-shadow: 0 0 20px rgba(25, 115, 192, 0.5);
-  }
-
-  .custom-cursor-follower.hover-media {
-    width: 76px; height: 76px;
-    background: rgba(8, 8, 8, 0.85);
-    border-color: var(--blue);
-    color: var(--blue);
-    backdrop-filter: blur(8px);
-    box-shadow: 0 0 25px rgba(0, 0, 0, 0.6);
-  }
-}
-
-/* ══════════════════════════════════════════
    NAV & ADAPTIVE LOGO
 ══════════════════════════════════════════ */
 .nav {
@@ -561,7 +502,7 @@ body.dark-theme .icon-moon { opacity: 0; transform: rotate(90deg) scale(0.4); }
 }
 
 /* ══════════════════════════════════════════
-   VIDEOGRAPHY SECTION & MAGNETIC TILES
+   VIDEOGRAPHY SECTION & CLEAN HOVER
 ══════════════════════════════════════════ */
 .video-bg {
   background: var(--fog);
@@ -595,7 +536,7 @@ body.dark-theme .icon-moon { opacity: 0; transform: rotate(90deg) scale(0.4); }
   width: 100%; height: 100%; object-fit: cover;
   transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.video-feature:hover video { transform: scale(1.06); }
+.video-feature:hover video { transform: scale(1.05); }
 .video-feature-overlay {
   position: absolute; inset: 0;
   background: linear-gradient(to right, rgba(8,8,8,0.75) 0%, rgba(8,8,8,0.15) 60%);
@@ -625,7 +566,7 @@ body.dark-theme .icon-moon { opacity: 0; transform: rotate(90deg) scale(0.4); }
   pointer-events: none; z-index: 3; transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
 }
 .video-feature:hover .video-play-hint {
-  background: var(--blue); transform: scale(1.08);
+  background: var(--blue); transform: scale(1.05);
   box-shadow: 0 0 20px rgba(25, 115, 192, 0.5);
 }
 
@@ -644,7 +585,7 @@ body.dark-theme .icon-moon { opacity: 0; transform: rotate(90deg) scale(0.4); }
   width: 100%; height: 100%; object-fit: cover;
   transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.video-tile:hover video { transform: scale(1.06); }
+.video-tile:hover video { transform: scale(1.05); }
 .video-tile-overlay {
   position: absolute; inset: 0;
   background: linear-gradient(to top, rgba(8,8,8,0.8) 0%, transparent 60%);
@@ -685,7 +626,7 @@ body.dark-theme .icon-moon { opacity: 0; transform: rotate(90deg) scale(0.4); }
   width: 100%; height: 100%; object-fit: cover;
   transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.photo-tile:hover img { transform: scale(1.06); }
+.photo-tile:hover img { transform: scale(1.05); }
 .photo-tile-label {
   position: absolute; bottom: 0; left: 0; right: 0;
   padding: 18px 20px;
@@ -1158,10 +1099,6 @@ a.detail-value:hover { color: var(--blue); }
 <!-- TOP SCROLL PROGRESS BAR -->
 <div class="scroll-progress-bar" id="scrollProgressBar"></div>
 
-<!-- CUSTOM MAGNETIC CURSOR -->
-<div class="custom-cursor" id="customCursor"></div>
-<div class="custom-cursor-follower" id="cursorFollower"></div>
-
 <!-- NAV -->
 <nav class="nav" id="nav">
   <a href="#" class="nav-logo">
@@ -1378,7 +1315,7 @@ a.detail-value:hover { color: var(--blue); }
     </div>
 
     <!-- Feature video -->
-    <div class="video-feature tilt-card reveal" id="showreelTile" data-cursor="PLAY FILM">
+    <div class="video-feature tilt-card reveal" id="showreelTile">
       <video src="assets/assets-showreel.mp4" autoplay muted loop playsinline></video>
       <div class="video-play-hint">
         <span>▶ Tap to play full screen</span>
@@ -1395,7 +1332,7 @@ a.detail-value:hover { color: var(--blue); }
     <div class="video-grid">
 
       <!-- Dr. Naiya Bansal Tile -->
-      <a href="https://www.instagram.com/p/DbntQIJmNvq/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" rel="noopener noreferrer" class="video-tile tilt-card reveal delay-1" data-cursor="WATCH REEL">
+      <a href="https://www.instagram.com/p/DbntQIJmNvq/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" rel="noopener noreferrer" class="video-tile tilt-card reveal delay-1">
         <video src="assets/VIDEO-2026-08-14-03-02-49.mp4" autoplay muted loop playsinline></video>
         <div class="video-tile-overlay">
           <div class="video-tile-meta">
@@ -1406,7 +1343,7 @@ a.detail-value:hover { color: var(--blue); }
       </a>
 
       <!-- La Femmora Tile -->
-      <a href="https://www.instagram.com/reel/DbdSVVWt-s8/?igsh=MXpvZmxkbGh3bjho" target="_blank" rel="noopener noreferrer" class="video-tile tilt-card reveal delay-2" data-cursor="WATCH REEL">
+      <a href="https://www.instagram.com/reel/DbdSVVWt-s8/?igsh=MXpvZmxkbGh3bjho" target="_blank" rel="noopener noreferrer" class="video-tile tilt-card reveal delay-2">
         <video src="assets/lemmora1.mp4" autoplay muted loop playsinline></video>
         <div class="video-tile-overlay">
           <div class="video-tile-meta">
@@ -1445,49 +1382,49 @@ a.detail-value:hover { color: var(--blue); }
     <!-- PHOTO GRID -->
     <div class="photo-grid reveal">
       <!-- Tile A — MOBE -->
-      <div class="photo-tile tilt-card pt-a" data-cursor="VIEW">
+      <div class="photo-tile tilt-card pt-a">
         <img src="assets/mobe.jpg" alt="Food · MOBE">
         <span class="photo-tile-label">Food · MOBE</span>
       </div>
 
       <!-- Tile B — La Femmora -->
-      <div class="photo-tile tilt-card pt-b" data-cursor="VIEW">
+      <div class="photo-tile tilt-card pt-b">
         <img src="assets/Lafamora1.jpeg" alt="Brand · La Femmora">
         <span class="photo-tile-label">Brand · La Femmora</span>
       </div>
 
       <!-- Tile C — Chef -->
-      <div class="photo-tile tilt-card pt-c" data-cursor="VIEW">
+      <div class="photo-tile tilt-card pt-c">
         <img src="assets/lafemmora chef.jpg" alt="Portrait · Chef">
         <span class="photo-tile-label">Portrait</span>
       </div>
 
       <!-- Tile D — Ambience -->
-      <div class="photo-tile tilt-card pt-d" data-cursor="VIEW">
+      <div class="photo-tile pt-d">
         <img src="assets/ambience.jpg" alt="Ambience · Restaurant">
         <span class="photo-tile-label">Ambience · Restaurant</span>
       </div>
 
       <!-- Tile E — Editorial -->
-      <div class="photo-tile tilt-card pt-e" data-cursor="VIEW">
+      <div class="photo-tile pt-e">
         <img src="assets/brand.jpg" alt="Editorial">
         <span class="photo-tile-label">Editorial</span>
       </div>
 
       <!-- Tile F — Campaign -->
-      <div class="photo-tile tilt-card pt-f" data-cursor="VIEW">
+      <div class="photo-tile pt-f">
         <img src="assets/campaign.png" alt="Campaign · Mock Shoot">
         <span class="photo-tile-label">Campaign · Mock Shoot</span>
       </div>
 
       <!-- Tile G — F&B (4:5 Ratio) -->
-      <div class="photo-tile tilt-card pt-g" data-cursor="VIEW">
+      <div class="photo-tile pt-g">
         <img src="assets/lafemmora2.jpg" alt="F&B">
         <span class="photo-tile-label">F&amp;B</span>
       </div>
 
       <!-- Tile H — Architecture -->
-      <div class="photo-tile tilt-card pt-h" data-cursor="VIEW">
+      <div class="photo-tile pt-h">
         <span class="photo-tile-label">Architecture</span>
       </div>
     </div>
@@ -1725,65 +1662,15 @@ a.detail-value:hover { color: var(--blue); }
   }, { passive: true });
 
   /* ══════════════════════════════════════════
-     2. CUSTOM INTERACTIVE MAGNETIC CURSOR
-  ══════════════════════════════════════════ */
-  const cursor = document.getElementById('customCursor');
-  const follower = document.getElementById('cursorFollower');
-
-  if (window.innerWidth >= 992 && cursor && follower) {
-    let mouseX = 0, mouseY = 0;
-    let followerX = 0, followerY = 0;
-
-    window.addEventListener('mousemove', (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-      cursor.style.left = mouseX + 'px';
-      cursor.style.top = mouseY + 'px';
-    });
-
-    function animateCursor() {
-      followerX += (mouseX - followerX) * 0.15;
-      followerY += (mouseY - followerY) * 0.15;
-      follower.style.left = followerX + 'px';
-      follower.style.top = followerY + 'px';
-      requestAnimationFrame(animateCursor);
-    }
-    animateCursor();
-
-    // Hover interactions for Cursor
-    document.querySelectorAll('a, button, input, select, textarea').forEach(el => {
-      el.addEventListener('mouseenter', () => {
-        follower.classList.add('hover-active');
-      });
-      el.addEventListener('mouseleave', () => {
-        follower.classList.remove('hover-active');
-        follower.textContent = '';
-      });
-    });
-
-    document.querySelectorAll('[data-cursor]').forEach(el => {
-      el.addEventListener('mouseenter', () => {
-        const text = el.getAttribute('data-cursor');
-        follower.textContent = text;
-        follower.classList.add('hover-media');
-      });
-      el.addEventListener('mouseleave', () => {
-        follower.textContent = '';
-        follower.classList.remove('hover-media');
-      });
-    });
-  }
-
-  /* ══════════════════════════════════════════
-     3. 3D TILT EFFECT ON CARDS
+     2. 3D TILT EFFECT ON CARDS
   ══════════════════════════════════════════ */
   document.querySelectorAll('.tilt-card').forEach(card => {
     card.addEventListener('mousemove', (e) => {
       const rect = card.getBoundingClientRect();
       const x = e.clientX - rect.left - rect.width / 2;
       const y = e.clientY - rect.top - rect.height / 2;
-      const rotateX = (-y / rect.height) * 12;
-      const rotateY = (x / rect.width) * 12;
+      const rotateX = (-y / rect.height) * 10;
+      const rotateY = (x / rect.width) * 10;
       card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
     });
 
@@ -2067,3 +1954,4 @@ a.detail-value:hover { color: var(--blue); }
 </script>
 </body>
 </html>
+
