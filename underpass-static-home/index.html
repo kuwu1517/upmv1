@@ -106,7 +106,7 @@ body.dark-theme .nav.scrolled {
   box-shadow: 0 1px 20px rgba(0,0,0,0.5);
 }
 .nav-logo img { height: 56px; width: auto; }
-.nav-right-group { display: flex; align-items: center; gap: 24px; }
+.nav-right-group { display: flex; align-items: center; gap: 20px; }
 .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
 .nav-links a {
   font-family: var(--space);
@@ -117,16 +117,42 @@ body.dark-theme .nav.scrolled {
 }
 .nav-links a:hover { opacity: 1; }
 
+/* SLEEK SVG THEME TOGGLE BUTTON */
 .theme-toggle-btn {
-  width: 38px; height: 38px; border-radius: 50%;
+  width: 40px; height: 40px; border-radius: 50%;
   border: 1px solid var(--line-light);
   background: var(--fog);
   color: var(--black);
   display: flex; align-items: center; justify-content: center;
-  font-size: 16px; cursor: pointer;
-  transition: background 0.2s, transform 0.2s;
+  cursor: pointer; position: relative;
+  transition: background 0.25s, border-color 0.25s, transform 0.2s;
 }
-.theme-toggle-btn:hover { transform: scale(1.08); background: var(--beige); }
+.theme-toggle-btn:hover {
+  transform: scale(1.08);
+  border-color: var(--blue);
+  background: var(--beige);
+}
+.theme-icon {
+  position: absolute;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+.icon-sun {
+  opacity: 0;
+  transform: rotate(-90deg) scale(0.4);
+}
+.icon-moon {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+
+body.dark-theme .icon-sun {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+body.dark-theme .icon-moon {
+  opacity: 0;
+  transform: rotate(90deg) scale(0.4);
+}
 
 .nav-btn {
   font-family: var(--poppins);
@@ -993,8 +1019,22 @@ a.detail-value:hover { color: var(--blue); }
       <li><a href="#contact" class="nav-btn" onclick="closeMenu()">Let's Talk</a></li>
     </ul>
 
-    <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle Light/Dark Theme" title="Toggle Light/Dark Theme">
-      <span id="themeIcon">🌙</span>
+    <!-- SLEEK VECTOR SVG THEME TOGGLE BUTTON -->
+    <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle Light/Dark Theme" title="Toggle Theme">
+      <svg class="theme-icon icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+      </svg>
+      <svg class="theme-icon icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="5"></circle>
+        <line x1="12" y1="1" x2="12" y2="3"></line>
+        <line x1="12" y1="21" x2="12" y2="23"></line>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+        <line x1="1" y1="12" x2="3" y2="12"></line>
+        <line x1="21" y1="12" x2="23" y2="12"></line>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+      </svg>
     </button>
 
     <button class="nav-hamburger" id="navHamburger" aria-label="Toggle navigation" onclick="toggleMenu()">
@@ -1521,14 +1561,11 @@ a.detail-value:hover { color: var(--blue); }
     document.getElementById('navHamburger').classList.remove('open');
   }
 
-  /* Theme Toggle (Light / Dark) */
+  /* Smooth Theme Toggle (Light / Dark) */
   const themeToggleBtn = document.getElementById('themeToggleBtn');
-  const themeIcon = document.getElementById('themeIcon');
   
   themeToggleBtn.addEventListener('click', () => {
     document.body.classList.toggle('dark-theme');
-    const isDark = document.body.classList.contains('dark-theme');
-    themeIcon.textContent = isDark ? '☀️' : '🌙';
   });
 
   /* Scroll reveal */
