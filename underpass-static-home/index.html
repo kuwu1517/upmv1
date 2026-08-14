@@ -1728,7 +1728,10 @@ a.detail-value:hover { color: #2D87D8; }
   }, { threshold: 0.1 });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-  /* Contact form submission with EmailJS + Formspree Fallback */
+  /* 
+    Contact form submission — DUAL SUBMISSION:
+    Sends to BOTH EmailJS (for client auto-reply) AND Formspree (for logging/notification)
+  */
   document.getElementById('contactForm').addEventListener('submit', async function(e) {
     e.preventDefault();
     const btn = document.getElementById('formBtn');
@@ -1739,35 +1742,32 @@ a.detail-value:hover { color: #2D87D8; }
     error.style.display = 'none'; success.style.display = 'none';
     btn.disabled = true; btn.innerHTML = 'Sending…';
 
-    const formData = {
+    const formDataObj = new FormData(this);
+    const emailjsData = {
       name: this.name.value,
       email: this.email.value,
       service: this.service.value || 'General Inquiry',
       message: this.message.value
     };
 
-    // Send automated email via EmailJS
     try {
-      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, formData);
-      this.querySelectorAll('.form-row, .field, .form-submit').forEach(el => el.style.display = 'none');
-      success.style.display = 'block';
-      return;
-    } catch (err) {
-      console.warn('EmailJS failed, falling back to Formspree:', err);
-    }
+      // Fire both EmailJS and Formspree concurrently
+      const [emailjsRes, formspreeRes] = await Promise.allSettled([
+        emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, emailjsData),
+        fetch('https://formspree.io/f/xkolredj', {
+          method: 'POST', body: formDataObj, headers: { 'Accept': 'application/json' }
+        })
+      ]);
 
-    // Fallback to Formspree handler
-    try {
-      const res = await fetch('https://formspree.io/f/xkolredj', {
-        method: 'POST', body: new FormData(this), headers: { 'Accept': 'application/json' }
-      });
-      const data = await res.json().catch(() => ({}));
-      if (res.ok) {
+      const emailjsSuccess = emailjsRes.status === 'fulfilled';
+      const formspreeSuccess = formspreeRes.status === 'fulfilled' && (formspreeRes.value && formspreeRes.value.ok);
+
+      if (emailjsSuccess || formspreeSuccess) {
         this.querySelectorAll('.form-row, .field, .form-submit').forEach(el => el.style.display = 'none');
         success.style.display = 'block';
       } else {
-        const msg = (data.errors && data.errors.length) ? data.errors.map(err => err.message).join('. ') : (data.error || 'Something went wrong. Please try again or email us directly.');
-        error.textContent = msg; error.style.display = 'block';
+        error.textContent = 'Submission error. Please email us directly at mediaunderpass@gmail.com';
+        error.style.display = 'block';
         btn.disabled = false; btn.innerHTML = origHTML;
       }
     } catch(err) {
