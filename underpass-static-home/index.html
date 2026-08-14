@@ -203,38 +203,22 @@ body.dark-theme .icon-moon { opacity: 0; transform: rotate(90deg) scale(0.4); }
   will-change: transform;
 }
 .hero-kicker {
-  display: inline-flex; align-items: center; gap: 12px; flex-wrap: wrap;
+  display: inline-flex; align-items: center; gap: 10px;
   font-family: var(--space);
   font-size: 11px; font-weight: 500;
-  letter-spacing: 0.18em; text-transform: uppercase;
-  color: var(--black); opacity: 0.7;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--black); opacity: 0.5;
   margin-bottom: 32px;
 }
-.caution-badge {
-  display: inline-flex; align-items: center; gap: 7px;
-  background: rgba(239, 75, 60, 0.1);
-  border: 1px solid rgba(239, 75, 60, 0.3);
-  color: var(--red);
-  font-family: var(--space);
-  font-size: 10px; font-weight: 600;
-  letter-spacing: 0.14em; text-transform: uppercase;
-  padding: 4px 12px; border-radius: 20px;
-  transition: transform 0.2s, background 0.2s;
-}
-.caution-badge:hover {
-  transform: scale(1.04);
-  background: rgba(239, 75, 60, 0.18);
-}
-.caution-dot {
+.hero-kicker-dot {
   width: 6px; height: 6px;
   background: var(--red); border-radius: 50%;
-  animation: pulseDot 1.5s infinite ease-in-out;
+  animation: pulseDot 2s infinite ease-in-out;
 }
 @keyframes pulseDot {
   0%, 100% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.6); opacity: 0.4; }
+  50% { transform: scale(1.6); opacity: 0.5; }
 }
-.hero-kicker-sep { opacity: 0.3; }
 
 .hero-h1 {
   font-family: var(--poppins);
@@ -925,12 +909,19 @@ a.detail-value:hover { color: var(--blue); }
 ══════════════════════════════════════════ */
 .footer {
   border-top: 1px solid #2A2A2A;
-  padding: 32px 48px;
+  padding: 36px 48px;
   display: flex; align-items: center; justify-content: space-between; gap: 20px;
   background: #0E0E0E; color: #FBF9D7;
 }
+.footer-left { display: flex; flex-direction: column; gap: 8px; }
 .footer-logo img { height: 44px; width: auto; }
-.footer-copy { font-family: var(--space); font-size: 12px; color: #FBF9D7; opacity: 0.25; }
+.footer-copy { font-family: var(--space); font-size: 12px; color: #FBF9D7; opacity: 0.35; }
+.footer-caution-note {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--space); font-size: 11px; font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--red); opacity: 0.85;
+}
 .footer-links { display: flex; gap: 24px; list-style: none; }
 .footer-links a {
   font-family: var(--space); font-size: 11px;
@@ -1158,11 +1149,7 @@ a.detail-value:hover { color: var(--blue); }
   <div class="hero-body">
     <div class="hero-left">
       <div class="hero-kicker">
-        <span class="caution-badge">
-          <span class="caution-dot"></span>
-          Caution: Brand Under Construction
-        </span>
-        <span class="hero-kicker-sep">·</span>
+        <span class="hero-kicker-dot"></span>
         Creative Studio &nbsp;·&nbsp; Chandigarh, IN
       </div>
       <h1 class="hero-h1">
@@ -1612,10 +1599,13 @@ a.detail-value:hover { color: var(--blue); }
 
 <!-- FOOTER -->
 <footer class="footer">
-  <div class="footer-logo">
-    <img src="assets/logo.png" alt="Underpass Media">
+  <div class="footer-left">
+    <div class="footer-logo">
+      <img src="assets/logo.png" alt="Underpass Media">
+    </div>
+    <p class="footer-copy">© 2026 Underpass Media. All rights reserved.</p>
+    <p class="footer-caution-note">✦ Caution: Brand Under Construction</p>
   </div>
-  <p class="footer-copy">© 2026 Underpass Media. All rights reserved.</p>
   <ul class="footer-links">
     <li><a href="#services">Services</a></li>
     <li><a href="#videography">Film</a></li>
@@ -1974,4 +1964,3 @@ a.detail-value:hover { color: var(--blue); }
 </script>
 </body>
 </html>
-
