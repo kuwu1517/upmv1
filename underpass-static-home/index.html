@@ -84,7 +84,7 @@ body {
 }
 
 /* ══════════════════════════════════════════
-   NAV
+   NAV & ADAPTIVE LOGO
 ══════════════════════════════════════════ */
 .nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
@@ -105,7 +105,18 @@ body.dark-theme .nav.scrolled {
   border-color: var(--divide);
   box-shadow: 0 1px 20px rgba(0,0,0,0.5);
 }
-.nav-logo img { height: 56px; width: auto; }
+
+/* Adaptive logo color switching */
+.nav-logo { display: flex; align-items: center; }
+.nav-logo img {
+  height: 56px; width: auto;
+  transition: filter 0.35s ease, opacity 0.2s ease;
+  filter: brightness(0); /* Black logo in Light Mode */
+}
+body.dark-theme .nav-logo img {
+  filter: none; /* Original white logo in Dark Mode */
+}
+
 .nav-right-group { display: flex; align-items: center; gap: 20px; }
 .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
 .nav-links a {
