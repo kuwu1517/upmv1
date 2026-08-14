@@ -29,7 +29,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 ══════════════════════════════════════════ */
 :root {
   /* Colours */
-  --blue:        #1973C0;   /* Underpass Blue — CTAs, headlines on light, icons */
+  --blue:        #1973C0;   /* Underpass Blue */
   --blue-lt:     #2D87D8;   /* hover tint */
   --cream:       #FBF9D7;   /* Story Cream — primary light background */
   --black:       #0E0E0E;   /* Studio Black — body text */
@@ -84,6 +84,79 @@ body {
 }
 
 /* ══════════════════════════════════════════
+   SCROLL PROGRESS BAR
+══════════════════════════════════════════ */
+.scroll-progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--blue), var(--red));
+  z-index: 9999;
+  transition: width 0.1s ease-out;
+  box-shadow: 0 0 10px rgba(25,115,192,0.6);
+}
+
+/* ══════════════════════════════════════════
+   CUSTOM INTERACTIVE MAGNETIC CURSOR
+══════════════════════════════════════════ */
+@media (min-width: 992px) {
+  body { cursor: default; }
+  
+  .custom-cursor {
+    position: fixed;
+    top: 0; left: 0;
+    width: 8px; height: 8px;
+    background: var(--blue);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 10000;
+    transform: translate(-50%, -50%);
+    transition: width 0.2s, height 0.2s, background-color 0.2s, opacity 0.2s;
+  }
+  
+  .custom-cursor-follower {
+    position: fixed;
+    top: 0; left: 0;
+    width: 36px; height: 36px;
+    border: 1px solid rgba(25, 115, 192, 0.4);
+    background: rgba(25, 115, 192, 0.05);
+    backdrop-filter: blur(2px);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--space);
+    font-size: 8px; font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--blue);
+    transition: width 0.25s cubic-bezier(0.16, 1, 0.3, 1), 
+                height 0.25s cubic-bezier(0.16, 1, 0.3, 1), 
+                border-color 0.25s, background-color 0.25s, opacity 0.2s;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  
+  .custom-cursor-follower.hover-active {
+    width: 68px; height: 68px;
+    background: rgba(25, 115, 192, 0.9);
+    border-color: var(--blue);
+    color: #fff;
+    box-shadow: 0 0 20px rgba(25, 115, 192, 0.5);
+  }
+
+  .custom-cursor-follower.hover-media {
+    width: 76px; height: 76px;
+    background: rgba(8, 8, 8, 0.85);
+    border-color: var(--blue);
+    color: var(--blue);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.6);
+  }
+}
+
+/* ══════════════════════════════════════════
    NAV & ADAPTIVE LOGO
 ══════════════════════════════════════════ */
 .nav {
@@ -91,31 +164,30 @@ body {
   display: flex; align-items: center; justify-content: space-between;
   padding: 0 48px; height: 68px;
   border-bottom: 1px solid transparent;
-  transition: background 0.35s, border-color 0.35s, box-shadow 0.35s;
+  transition: background 0.35s, border-color 0.35s, box-shadow 0.35s, height 0.35s;
 }
 .nav.scrolled {
-  background: rgba(251,249,215,0.94);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  height: 60px;
+  background: rgba(251,249,215,0.92);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
   border-color: var(--cream-d);
-  box-shadow: 0 1px 20px rgba(0,0,0,0.06);
+  box-shadow: 0 4px 30px rgba(0,0,0,0.05);
 }
 body.dark-theme .nav.scrolled {
-  background: rgba(8,8,8,0.94);
+  background: rgba(8,8,8,0.92);
   border-color: var(--divide);
-  box-shadow: 0 1px 20px rgba(0,0,0,0.5);
+  box-shadow: 0 4px 30px rgba(0,0,0,0.5);
 }
 
-/* Adaptive logo color switching */
 .nav-logo { display: flex; align-items: center; }
 .nav-logo img {
-  height: 56px; width: auto;
-  transition: filter 0.35s ease, opacity 0.2s ease;
-  filter: brightness(0); /* Black logo in Light Mode */
+  height: 52px; width: auto;
+  transition: filter 0.35s ease, transform 0.3s ease;
+  filter: brightness(0);
 }
-body.dark-theme .nav-logo img {
-  filter: none; /* Original white logo in Dark Mode */
-}
+.nav-logo:hover img { transform: scale(1.04); }
+body.dark-theme .nav-logo img { filter: none; }
 
 .nav-right-group { display: flex; align-items: center; gap: 20px; }
 .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
@@ -124,9 +196,10 @@ body.dark-theme .nav-logo img {
   font-size: 13px; font-weight: 400;
   letter-spacing: 0.05em; text-transform: uppercase;
   color: var(--black); opacity: 0.65;
-  transition: opacity 0.2s;
+  transition: opacity 0.2s, transform 0.2s;
+  display: inline-block;
 }
-.nav-links a:hover { opacity: 1; }
+.nav-links a:hover { opacity: 1; transform: translateY(-1px); }
 
 /* SLEEK SVG THEME TOGGLE BUTTON */
 .theme-toggle-btn {
@@ -136,34 +209,23 @@ body.dark-theme .nav-logo img {
   color: var(--black);
   display: flex; align-items: center; justify-content: center;
   cursor: pointer; position: relative;
-  transition: background 0.25s, border-color 0.25s, transform 0.2s;
+  transition: background 0.25s, border-color 0.25s, transform 0.25s, box-shadow 0.25s;
 }
 .theme-toggle-btn:hover {
-  transform: scale(1.08);
+  transform: scale(1.1) rotate(15deg);
   border-color: var(--blue);
   background: var(--beige);
+  box-shadow: 0 0 15px rgba(25, 115, 192, 0.25);
 }
 .theme-icon {
   position: absolute;
   transition: opacity 0.35s ease, transform 0.35s ease;
 }
-.icon-sun {
-  opacity: 0;
-  transform: rotate(-90deg) scale(0.4);
-}
-.icon-moon {
-  opacity: 1;
-  transform: rotate(0deg) scale(1);
-}
+.icon-sun { opacity: 0; transform: rotate(-90deg) scale(0.4); }
+.icon-moon { opacity: 1; transform: rotate(0deg) scale(1); }
 
-body.dark-theme .icon-sun {
-  opacity: 1;
-  transform: rotate(0deg) scale(1);
-}
-body.dark-theme .icon-moon {
-  opacity: 0;
-  transform: rotate(90deg) scale(0.4);
-}
+body.dark-theme .icon-sun { opacity: 1; transform: rotate(0deg) scale(1); }
+body.dark-theme .icon-moon { opacity: 0; transform: rotate(90deg) scale(0.4); }
 
 .nav-btn {
   font-family: var(--poppins);
@@ -173,12 +235,17 @@ body.dark-theme .icon-moon {
   background: var(--blue);
   padding: 9px 22px; border-radius: 6px;
   opacity: 1 !important;
-  transition: background 0.2s, transform 0.15s;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+  box-shadow: 0 4px 14px rgba(25, 115, 192, 0.25);
 }
-.nav-btn:hover { background: var(--blue-lt); transform: translateY(-1px); }
+.nav-btn:hover {
+  background: var(--blue-lt);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(25, 115, 192, 0.4);
+}
 
 /* ══════════════════════════════════════════
-   HERO — Cream Background
+   HERO — Cream Background & Parallax Dynamics
 ══════════════════════════════════════════ */
 .hero {
   min-height: 100vh;
@@ -192,6 +259,7 @@ body.dark-theme .icon-moon {
   display: grid; grid-template-columns: 1fr 1fr;
   gap: 80px; align-items: center;
   padding: 80px 0 40px;
+  will-change: transform;
 }
 .hero-kicker {
   display: inline-flex; align-items: center; gap: 10px;
@@ -204,7 +272,13 @@ body.dark-theme .icon-moon {
 .hero-kicker-dot {
   width: 6px; height: 6px;
   background: var(--red); border-radius: 50%;
+  animation: pulseDot 2s infinite ease-in-out;
 }
+@keyframes pulseDot {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.6); opacity: 0.5; }
+}
+
 .hero-h1 {
   font-family: var(--poppins);
   font-size: clamp(48px, 7.5vw, 104px);
@@ -224,7 +298,12 @@ body.dark-theme .icon-moon {
 }
 .hero-h1 .thin { font-weight: 300; opacity: 0.35; }
 .hero-right { display: flex; flex-direction: column; gap: 36px; }
-.hero-right-rule { width: 40px; height: 2px; background: var(--red); }
+.hero-right-rule {
+  width: 40px; height: 2px; background: var(--red);
+  transition: width 0.4s ease;
+}
+.hero-right:hover .hero-right-rule { width: 70px; }
+
 .hero-desc {
   font-family: var(--space);
   font-size: 16px; font-weight: 300;
@@ -242,11 +321,16 @@ body.dark-theme .icon-moon {
   color: #FBF9D7;
   background: var(--blue);
   padding: 14px 28px; border-radius: 6px;
-  transition: background 0.2s, transform 0.15s;
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 6px 20px rgba(25, 115, 192, 0.25);
 }
-.btn-primary:hover { background: var(--blue-lt); transform: translateY(-2px); }
+.btn-primary:hover {
+  background: var(--blue-lt);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 28px rgba(25, 115, 192, 0.4);
+}
 .btn-primary svg { transition: transform 0.2s; }
-.btn-primary:hover svg { transform: translateX(3px); }
+.btn-primary:hover svg { transform: translateX(4px); }
 
 .btn-outline {
   display: inline-flex; align-items: center; gap: 8px;
@@ -254,9 +338,9 @@ body.dark-theme .icon-moon {
   color: var(--black); opacity: 0.55;
   border-bottom: 1px solid rgba(14,14,14,0.2);
   padding-bottom: 2px;
-  transition: opacity 0.2s;
+  transition: opacity 0.2s, border-color 0.2s, transform 0.2s;
 }
-.btn-outline:hover { opacity: 0.85; }
+.btn-outline:hover { opacity: 0.9; border-color: var(--blue); transform: translateX(3px); }
 
 /* Hero foot */
 .hero-foot {
@@ -282,7 +366,14 @@ body.dark-theme .icon-moon {
   font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
   color: var(--black); opacity: 0.35;
 }
-.scroll-line { width: 40px; height: 1px; background: var(--beige); }
+.scroll-line {
+  width: 40px; height: 1px; background: var(--beige);
+  animation: expandLine 2s infinite alternate ease-in-out;
+}
+@keyframes expandLine {
+  from { width: 30px; }
+  to { width: 55px; }
+}
 
 /* ══════════════════════════════════════════
    TICKER — Grain Beige
@@ -293,7 +384,7 @@ body.dark-theme .icon-moon {
   background: var(--beige);
   overflow: hidden; padding: 13px 0;
 }
-.ticker-track { display: flex; width: max-content; animation: ticker 30s linear infinite; }
+.ticker-track { display: flex; width: max-content; animation: ticker 28s linear infinite; }
 .ticker-track:hover { animation-play-state: paused; }
 .ticker-group { display: flex; align-items: center; white-space: nowrap; }
 .ticker-item {
@@ -302,7 +393,9 @@ body.dark-theme .icon-moon {
   letter-spacing: 0.2em; text-transform: uppercase;
   color: var(--black); opacity: 0.45;
   padding: 0 36px;
+  transition: opacity 0.2s, color 0.2s;
 }
+.ticker-item:hover { opacity: 1; color: var(--blue); }
 .ticker-sep { color: var(--blue); font-size: 14px; line-height: 0; flex-shrink: 0; }
 @keyframes ticker {
   from { transform: translateX(0); }
@@ -310,9 +403,9 @@ body.dark-theme .icon-moon {
 }
 
 /* ══════════════════════════════════════════
-   SECTION SHARED
+   SECTION SHARED & REVEALS
 ══════════════════════════════════════════ */
-.section { padding: 100px 48px; }
+.section { padding: 110px 48px; }
 .section-inner { max-width: 1200px; margin: 0 auto; }
 .eyebrow {
   font-family: var(--space);
@@ -328,15 +421,32 @@ body.dark-theme .icon-moon {
   color: var(--black);
 }
 
-.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.65s ease, transform 0.65s ease; }
-.reveal.in { opacity: 1; transform: none; }
-.delay-1 { transition-delay: 0.1s; }
-.delay-2 { transition-delay: 0.2s; }
-.delay-3 { transition-delay: 0.3s; }
-.delay-4 { transition-delay: 0.4s; }
+.reveal {
+  opacity: 0;
+  transform: translateY(36px) scale(0.97);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), 
+              transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+.reveal.in { opacity: 1; transform: translateY(0) scale(1); }
+.delay-1 { transition-delay: 0.08s; }
+.delay-2 { transition-delay: 0.16s; }
+.delay-3 { transition-delay: 0.24s; }
+.delay-4 { transition-delay: 0.32s; }
 
 /* ══════════════════════════════════════════
-   SERVICES — Fog White
+   3D TILT CARDS
+══════════════════════════════════════════ */
+.tilt-card {
+  transform-style: preserve-3d;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              background 0.25s;
+  will-change: transform;
+}
+
+/* ══════════════════════════════════════════
+   SERVICES — Fog White & Animated Line Progress
 ══════════════════════════════════════════ */
 .services-bg { background: var(--fog); }
 .services-header {
@@ -353,27 +463,31 @@ body.dark-theme .icon-moon {
   display: grid; grid-template-columns: repeat(3, 1fr);
   gap: 1px; background: var(--line-light);
   border: 1px solid var(--line-light);
+  border-radius: 8px; overflow: hidden;
 }
 .svc {
   background: var(--fog);
   padding: 44px 36px 40px;
   position: relative; overflow: hidden;
-  transition: background 0.25s;
 }
 .svc::after {
-  content: ''; position: absolute; inset: 0;
-  border-top: 2px solid var(--blue);
-  opacity: 0; transition: opacity 0.3s;
+  content: ''; position: absolute; top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--blue), var(--red));
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .svc:hover { background: var(--cream); }
-.svc:hover::after { opacity: 1; }
+.svc:hover::after { transform: scaleX(1); }
 .svc-icon {
-  width: 40px; height: 40px; border-radius: 8px;
+  width: 44px; height: 44px; border-radius: 10px;
   background: var(--blue-pale);
   border: 1px solid var(--blue-border);
   display: flex; align-items: center; justify-content: center;
   margin-bottom: 28px;
+  transition: transform 0.3s ease, background 0.3s ease;
 }
+.svc:hover .svc-icon { transform: scale(1.12) rotate(6deg); background: rgba(25,115,192,0.18); }
 .svc-icon svg { color: var(--blue); }
 .svc-title {
   font-family: var(--poppins);
@@ -394,9 +508,9 @@ body.dark-theme .icon-moon {
   color: var(--black); opacity: 0.45;
   border: 1px solid var(--cream-d);
   border-radius: 4px; padding: 4px 10px;
-  transition: border-color 0.2s, color 0.2s, opacity 0.2s;
+  transition: border-color 0.2s, color 0.2s, opacity 0.2s, transform 0.2s;
 }
-.svc:hover .svc-tag { border-color: var(--blue-border); color: var(--blue); opacity: 1; }
+.svc:hover .svc-tag { border-color: var(--blue-border); color: var(--blue); opacity: 1; transform: translateY(-1px); }
 
 /* ══════════════════════════════════════════
    ABOUT — Studio Black Contrast Section
@@ -421,19 +535,20 @@ body.dark-theme .icon-moon {
 .about-copy p + p { margin-top: 16px; }
 .about-pull {
   font-family: var(--cormorant);
-  font-style: italic; font-size: 22px; font-weight: 500;
+  font-style: italic; font-size: 24px; font-weight: 500;
   color: var(--blue); line-height: 1.45;
-  margin-top: 28px; padding-left: 18px;
-  border-left: 2px solid var(--blue); opacity: 0.9;
+  margin-top: 28px; padding-left: 20px;
+  border-left: 3px solid var(--blue); opacity: 0.9;
 }
-.about-right { display: flex; flex-direction: column; gap: 2px; }
+.about-right { display: flex; flex-direction: column; gap: 4px; }
 .belief {
   background: #181818;
-  border-left: 2px solid transparent;
+  border-left: 3px solid transparent;
   padding: 28px 28px;
-  transition: border-color 0.3s, background 0.3s;
+  border-radius: 6px;
+  transition: border-color 0.3s, background 0.3s, transform 0.3s;
 }
-.belief:hover { border-color: var(--blue); background: #222; }
+.belief:hover { border-color: var(--blue); background: #222; transform: translateX(6px); }
 .belief-q {
   font-family: var(--poppins);
   font-size: 15px; font-weight: 600;
@@ -446,7 +561,7 @@ body.dark-theme .icon-moon {
 }
 
 /* ══════════════════════════════════════════
-   VIDEOGRAPHY SECTION
+   VIDEOGRAPHY SECTION & MAGNETIC TILES
 ══════════════════════════════════════════ */
 .video-bg {
   background: var(--fog);
@@ -464,25 +579,26 @@ body.dark-theme .icon-moon {
   letter-spacing: 0.16em; text-transform: uppercase;
   color: var(--black); opacity: 0.5;
   border-bottom: 1px solid var(--line-light);
-  padding-bottom: 2px; transition: opacity 0.2s;
+  padding-bottom: 2px; transition: opacity 0.2s, transform 0.2s;
 }
-.portfolio-link:hover { opacity: 0.9; }
+.portfolio-link:hover { opacity: 0.9; transform: translateX(4px); }
 
 /* Large feature video */
 .video-feature {
   position: relative; overflow: hidden;
   aspect-ratio: 16/7; background: #000;
   margin-bottom: 3px; cursor: pointer; display: block;
-  border-radius: 6px;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.12);
 }
 .video-feature video {
   width: 100%; height: 100%; object-fit: cover;
-  transition: transform 0.6s ease;
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.video-feature:hover video { transform: scale(1.05); }
+.video-feature:hover video { transform: scale(1.06); }
 .video-feature-overlay {
   position: absolute; inset: 0;
-  background: linear-gradient(to right, rgba(8,8,8,0.7) 0%, rgba(8,8,8,0.15) 60%);
+  background: linear-gradient(to right, rgba(8,8,8,0.75) 0%, rgba(8,8,8,0.15) 60%);
   display: flex; align-items: flex-end;
   padding: 48px; pointer-events: none; z-index: 2;
 }
@@ -500,39 +616,43 @@ body.dark-theme .icon-moon {
 }
 .video-play-hint {
   position: absolute; top: 24px; right: 24px;
-  background: rgba(8,8,8,0.75); backdrop-filter: blur(10px);
+  background: rgba(8,8,8,0.75); backdrop-filter: blur(12px);
   border: 1px solid rgba(255,255,255,0.2);
   border-radius: 30px; padding: 8px 18px;
   font-family: var(--space); font-size: 11px; font-weight: 500;
   letter-spacing: 0.12em; text-transform: uppercase;
   color: #FBF9D7; display: flex; align-items: center; gap: 8px;
-  pointer-events: none; z-index: 3; transition: background 0.3s, transform 0.3s;
+  pointer-events: none; z-index: 3; transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
 }
 .video-feature:hover .video-play-hint {
-  background: var(--blue); transform: scale(1.05);
+  background: var(--blue); transform: scale(1.08);
+  box-shadow: 0 0 20px rgba(25, 115, 192, 0.5);
 }
 
 /* Video grid */
 .video-grid {
   display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: 12px; margin-top: 12px;
+  gap: 14px; margin-top: 14px;
 }
 .video-tile {
   position: relative; overflow: hidden;
   aspect-ratio: 3/4; background: #000;
-  cursor: pointer; display: block; border-radius: 6px;
+  cursor: pointer; display: block; border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
 }
 .video-tile video {
   width: 100%; height: 100%; object-fit: cover;
-  transition: transform 0.6s ease;
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.video-tile:hover video { transform: scale(1.05); }
+.video-tile:hover video { transform: scale(1.06); }
 .video-tile-overlay {
   position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(8,8,8,0.75) 0%, transparent 60%);
-  display: flex; align-items: flex-end; padding: 20px;
+  background: linear-gradient(to top, rgba(8,8,8,0.8) 0%, transparent 60%);
+  display: flex; align-items: flex-end; padding: 22px;
   pointer-events: none; z-index: 2;
+  transition: background 0.3s;
 }
+.video-tile:hover .video-tile-overlay { background: linear-gradient(to top, rgba(8,8,8,0.9) 0%, rgba(8,8,8,0.2) 100%); }
 .video-tile-cat {
   font-family: var(--space); font-size: 9px; font-weight: 500;
   letter-spacing: 0.2em; text-transform: uppercase;
@@ -541,10 +661,12 @@ body.dark-theme .icon-moon {
 .video-tile-name {
   font-family: var(--poppins); font-size: 15px; font-weight: 700;
   color: #FBF9D7; letter-spacing: -0.01em;
+  transition: transform 0.3s ease;
 }
+.video-tile:hover .video-tile-name { transform: translateY(-2px); }
 
 /* ══════════════════════════════════════════
-   PHOTOGRAPHY SECTION
+   PHOTOGRAPHY MASONRY GRID
 ══════════════════════════════════════════ */
 .photo-bg {
   background: var(--cream);
@@ -552,27 +674,28 @@ body.dark-theme .icon-moon {
 }
 .photo-grid {
   display: grid; grid-template-columns: repeat(12, 1fr);
-  grid-auto-rows: 85px; gap: 10px;
+  grid-auto-rows: 85px; gap: 12px;
 }
 .photo-tile {
   position: relative; overflow: hidden;
-  background: #111; cursor: pointer; border-radius: 6px;
+  background: #111; cursor: pointer; border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
 }
 .photo-tile img {
   width: 100%; height: 100%; object-fit: cover;
-  transition: transform 0.6s ease;
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.photo-tile:hover img { transform: scale(1.05); }
+.photo-tile:hover img { transform: scale(1.06); }
 .photo-tile-label {
   position: absolute; bottom: 0; left: 0; right: 0;
-  padding: 16px 18px;
-  background: linear-gradient(to top, rgba(8,8,8,0.8) 0%, transparent 100%);
+  padding: 18px 20px;
+  background: linear-gradient(to top, rgba(8,8,8,0.85) 0%, transparent 100%);
   font-family: var(--space); font-size: 11px; font-weight: 500;
   letter-spacing: 0.1em; text-transform: uppercase;
-  color: #FBF9D7; opacity: 0; transform: translateY(6px);
+  color: #FBF9D7; opacity: 0; transform: translateY(8px);
   transition: opacity 0.3s, transform 0.3s; z-index: 2; pointer-events: none;
 }
-.photo-tile:hover .photo-tile-label { opacity: 0.9; transform: none; }
+.photo-tile:hover .photo-tile-label { opacity: 0.95; transform: translateY(0); }
 
 .pt-a { grid-column: span 5; grid-row: span 5; }
 .pt-b { grid-column: span 4; grid-row: span 3; }
@@ -601,6 +724,7 @@ body.dark-theme .icon-moon {
   display: grid; grid-template-columns: repeat(4, 1fr);
   gap: 1px; background: var(--line-light);
   border: 1px solid var(--line-light);
+  border-radius: 8px; overflow: hidden;
 }
 .step {
   background: var(--fog);
@@ -613,10 +737,10 @@ body.dark-theme .icon-moon {
   font-family: var(--cormorant);
   font-size: 72px; font-weight: 600;
   line-height: 0.9; color: rgba(14,14,14,0.12);
-  margin-bottom: 20px; letter-spacing: -0.02em; transition: color 0.3s;
+  margin-bottom: 20px; letter-spacing: -0.02em; transition: color 0.3s, transform 0.3s;
 }
 body.dark-theme .step-n { color: rgba(255,255,255,0.12); }
-.step:hover .step-n { color: rgba(25,115,192,0.25); }
+.step:hover .step-n { color: rgba(25,115,192,0.3); transform: translateY(-4px); }
 .step-title {
   font-family: var(--poppins);
   font-size: 17px; font-weight: 700;
@@ -628,9 +752,10 @@ body.dark-theme .step-n { color: rgba(255,255,255,0.12); }
   color: var(--black); opacity: 0.55; line-height: 1.8;
 }
 .step-bar {
-  position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
-  background: var(--blue); transform: scaleX(0); transform-origin: left;
-  transition: transform 0.4s ease;
+  position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--blue), var(--red));
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .step:hover .step-bar { transform: scaleX(1); }
 
@@ -652,6 +777,7 @@ body.dark-theme .step-n { color: rgba(255,255,255,0.12); }
   display: grid; grid-template-columns: repeat(4, 1fr);
   gap: 1px; background: var(--line-light);
   border: 1px solid var(--line-light);
+  border-radius: 8px; overflow: hidden;
   margin-bottom: 72px;
 }
 .founder-card {
@@ -663,7 +789,7 @@ body.dark-theme .step-n { color: rgba(255,255,255,0.12); }
 .founder-card:hover { background: var(--cream); }
 .founder-card::after {
   content: ''; position: absolute;
-  bottom: 0; left: 0; right: 0; height: 2px;
+  bottom: 0; left: 0; right: 0; height: 3px;
   background: var(--blue); transform: scaleX(0); transform-origin: left;
   transition: transform 0.4s ease;
 }
@@ -675,7 +801,10 @@ body.dark-theme .step-n { color: rgba(255,255,255,0.12); }
   display: flex; align-items: center; justify-content: center;
   font-family: var(--poppins); font-size: 16px; font-weight: 700;
   color: var(--blue); margin-bottom: 20px;
+  transition: transform 0.3s ease, background 0.3s ease;
 }
+.founder-card:hover .founder-initials { transform: scale(1.1); background: rgba(25,115,192,0.18); }
+
 .founder-name {
   font-family: var(--poppins);
   font-size: 17px; font-weight: 700;
@@ -695,7 +824,8 @@ body.dark-theme .step-n { color: rgba(255,255,255,0.12); }
 .founder-story-block {
   background: #0E0E0E;
   color: #FBF9D7;
-  padding: 64px 72px; border-radius: 6px;
+  padding: 64px 72px; border-radius: 10px;
+  box-shadow: 0 16px 40px rgba(0,0,0,0.3);
 }
 .founder-story-label {
   font-family: var(--space);
@@ -723,6 +853,7 @@ body.dark-theme .step-n { color: rgba(255,255,255,0.12); }
   background: var(--blue);
   padding: 72px 48px;
   display: flex; align-items: center; justify-content: space-between; gap: 40px;
+  box-shadow: 0 10px 40px rgba(25, 115, 192, 0.3);
 }
 .cta-band-title {
   font-family: var(--cormorant);
@@ -742,11 +873,12 @@ body.dark-theme .step-n { color: rgba(255,255,255,0.12); }
   color: var(--blue); background: #FBF9D7;
   padding: 14px 28px; border-radius: 6px;
   white-space: nowrap; flex-shrink: 0;
-  transition: transform 0.15s, background 0.2s;
+  transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
 }
-.btn-white:hover { transform: translateY(-2px); background: #fff; }
+.btn-white:hover { transform: translateY(-3px); background: #fff; box-shadow: 0 10px 30px rgba(0,0,0,0.25); }
 .btn-white svg { transition: transform 0.2s; }
-.btn-white:hover svg { transform: translateX(3px); }
+.btn-white:hover svg { transform: translateX(4px); }
 
 /* ══════════════════════════════════════════
    CONTACT — Dark Contrast Section
@@ -795,10 +927,13 @@ a.detail-value:hover { color: var(--blue); }
   color: #FBF9D7; font-family: var(--space);
   font-size: 14px; font-weight: 300;
   padding: 13px 16px; border-radius: 6px; outline: none;
-  transition: border-color 0.2s; resize: none;
+  transition: border-color 0.2s, box-shadow 0.2s; resize: none;
   -webkit-appearance: none; appearance: none;
 }
-.field input:focus, .field textarea:focus, .field select:focus { border-color: var(--blue); }
+.field input:focus, .field textarea:focus, .field select:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 12px rgba(25, 115, 192, 0.3);
+}
 .field input::placeholder, .field textarea::placeholder { color: #FBF9D7; opacity: 0.2; }
 .field select option { background: #1E1E1E; }
 
@@ -810,12 +945,13 @@ a.detail-value:hover { color: var(--blue); }
   letter-spacing: 0.03em; text-transform: uppercase;
   color: #FBF9D7; background: var(--blue);
   padding: 14px 28px; border-radius: 6px; border: none; cursor: pointer;
-  transition: background 0.2s, transform 0.15s;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+  box-shadow: 0 6px 20px rgba(25, 115, 192, 0.25);
 }
-.form-submit:hover { background: var(--blue-lt); transform: translateY(-2px); }
+.form-submit:hover { background: var(--blue-lt); transform: translateY(-2px); box-shadow: 0 10px 28px rgba(25, 115, 192, 0.4); }
 .form-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
 .form-submit svg { transition: transform 0.2s; }
-.form-submit:hover:not(:disabled) svg { transform: translateX(3px); }
+.form-submit:hover:not(:disabled) svg { transform: translateX(4px); }
 .form-success {
   display: none; padding: 20px 24px;
   background: rgba(25,115,192,0.1); border: 1px solid rgba(25,115,192,0.25);
@@ -847,12 +983,12 @@ a.detail-value:hover { color: var(--blue); }
 .footer-links a:hover { opacity: 0.8; }
 
 /* ══════════════════════════════════════════
-   FULLSCREEN MEDIA LIGHTBOX (MATCHING REFERENCE UI)
+   FULLSCREEN MEDIA LIGHTBOX OVERLAY
 ══════════════════════════════════════════ */
 .lb-overlay {
   position: fixed; inset: 0; z-index: 9999;
-  background: rgba(4, 4, 6, 0.94);
-  backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+  background: rgba(4, 4, 6, 0.95);
+  backdrop-filter: blur(28px); -webkit-backdrop-filter: blur(28px);
   display: flex; flex-direction: column;
   align-items: center; justify-content: center;
   opacity: 0; visibility: hidden;
@@ -895,8 +1031,11 @@ a.detail-value:hover { color: var(--blue); }
   display: flex; align-items: center; justify-content: center;
   max-width: 100%; max-height: calc(75vh - 70px);
   position: relative; box-shadow: 0 24px 60px rgba(0,0,0,0.9);
-  border-radius: 6px; overflow: hidden;
+  border-radius: 8px; overflow: hidden;
+  transform: scale(0.95); transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
+.lb-overlay.active .lb-media-wrapper { transform: scale(1); }
+
 .lb-media-wrapper img {
   max-width: 82vw; max-height: calc(75vh - 70px);
   object-fit: contain; border-radius: 4px; display: block;
@@ -919,8 +1058,8 @@ a.detail-value:hover { color: var(--blue); }
 
 .lb-thumb-container {
   position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
-  width: min(92vw, 1100px); background: rgba(12, 12, 12, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  width: min(92vw, 1100px); background: rgba(12, 12, 12, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: 8px; padding: 8px 12px;
   backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
   z-index: 10010; overflow-x: auto; scrollbar-width: thin;
@@ -1015,6 +1154,13 @@ a.detail-value:hover { color: var(--blue); }
 </style>
 </head>
 <body>
+
+<!-- TOP SCROLL PROGRESS BAR -->
+<div class="scroll-progress-bar" id="scrollProgressBar"></div>
+
+<!-- CUSTOM MAGNETIC CURSOR -->
+<div class="custom-cursor" id="customCursor"></div>
+<div class="custom-cursor-follower" id="cursorFollower"></div>
 
 <!-- NAV -->
 <nav class="nav" id="nav">
@@ -1143,7 +1289,7 @@ a.detail-value:hover { color: var(--blue); }
       <p class="services-sub">From the first brand conversation to the last content frame — we handle the thinking, the making, and everything in between.</p>
     </div>
     <div class="services-grid">
-      <div class="svc reveal delay-1">
+      <div class="svc tilt-card reveal delay-1">
         <div class="svc-icon">
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2L2 7v6l8 5 8-5V7L10 2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
         </div>
@@ -1156,7 +1302,7 @@ a.detail-value:hover { color: var(--blue); }
           <span class="svc-tag">Audit</span>
         </div>
       </div>
-      <div class="svc reveal delay-2">
+      <div class="svc tilt-card reveal delay-2">
         <div class="svc-icon">
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="3" width="14" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M7 10h6M10 7v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
         </div>
@@ -1169,7 +1315,7 @@ a.detail-value:hover { color: var(--blue); }
           <span class="svc-tag">Art direction</span>
         </div>
       </div>
-      <div class="svc reveal delay-3">
+      <div class="svc tilt-card reveal delay-3">
         <div class="svc-icon">
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7" stroke="currentColor" stroke-width="1.5"/><path d="M10 6v4l3 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
         </div>
@@ -1232,7 +1378,7 @@ a.detail-value:hover { color: var(--blue); }
     </div>
 
     <!-- Feature video -->
-    <div class="video-feature reveal" id="showreelTile">
+    <div class="video-feature tilt-card reveal" id="showreelTile" data-cursor="PLAY FILM">
       <video src="assets/assets-showreel.mp4" autoplay muted loop playsinline></video>
       <div class="video-play-hint">
         <span>▶ Tap to play full screen</span>
@@ -1249,7 +1395,7 @@ a.detail-value:hover { color: var(--blue); }
     <div class="video-grid">
 
       <!-- Dr. Naiya Bansal Tile -->
-      <a href="https://www.instagram.com/p/DbntQIJmNvq/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" rel="noopener noreferrer" class="video-tile reveal delay-1">
+      <a href="https://www.instagram.com/p/DbntQIJmNvq/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" rel="noopener noreferrer" class="video-tile tilt-card reveal delay-1" data-cursor="WATCH REEL">
         <video src="assets/VIDEO-2026-08-14-03-02-49.mp4" autoplay muted loop playsinline></video>
         <div class="video-tile-overlay">
           <div class="video-tile-meta">
@@ -1260,7 +1406,7 @@ a.detail-value:hover { color: var(--blue); }
       </a>
 
       <!-- La Femmora Tile -->
-      <a href="https://www.instagram.com/reel/DbdSVVWt-s8/?igsh=MXpvZmxkbGh3bjho" target="_blank" rel="noopener noreferrer" class="video-tile reveal delay-2">
+      <a href="https://www.instagram.com/reel/DbdSVVWt-s8/?igsh=MXpvZmxkbGh3bjho" target="_blank" rel="noopener noreferrer" class="video-tile tilt-card reveal delay-2" data-cursor="WATCH REEL">
         <video src="assets/lemmora1.mp4" autoplay muted loop playsinline></video>
         <div class="video-tile-overlay">
           <div class="video-tile-meta">
@@ -1270,7 +1416,7 @@ a.detail-value:hover { color: var(--blue); }
         </div>
       </a>
 
-      <div class="video-tile reveal delay-3" style="cursor: default;">
+      <div class="video-tile tilt-card reveal delay-3" style="cursor: default;">
         <div class="video-tile-overlay">
           <div class="video-tile-meta">
             <p class="video-tile-cat">Social Reel</p>
@@ -1299,49 +1445,49 @@ a.detail-value:hover { color: var(--blue); }
     <!-- PHOTO GRID -->
     <div class="photo-grid reveal">
       <!-- Tile A — MOBE -->
-      <div class="photo-tile pt-a">
+      <div class="photo-tile tilt-card pt-a" data-cursor="VIEW">
         <img src="assets/mobe.jpg" alt="Food · MOBE">
         <span class="photo-tile-label">Food · MOBE</span>
       </div>
 
       <!-- Tile B — La Femmora -->
-      <div class="photo-tile pt-b">
+      <div class="photo-tile tilt-card pt-b" data-cursor="VIEW">
         <img src="assets/Lafamora1.jpeg" alt="Brand · La Femmora">
         <span class="photo-tile-label">Brand · La Femmora</span>
       </div>
 
       <!-- Tile C — Chef -->
-      <div class="photo-tile pt-c">
+      <div class="photo-tile tilt-card pt-c" data-cursor="VIEW">
         <img src="assets/lafemmora chef.jpg" alt="Portrait · Chef">
         <span class="photo-tile-label">Portrait</span>
       </div>
 
       <!-- Tile D — Ambience -->
-      <div class="photo-tile pt-d">
+      <div class="photo-tile tilt-card pt-d" data-cursor="VIEW">
         <img src="assets/ambience.jpg" alt="Ambience · Restaurant">
         <span class="photo-tile-label">Ambience · Restaurant</span>
       </div>
 
       <!-- Tile E — Editorial -->
-      <div class="photo-tile pt-e">
+      <div class="photo-tile tilt-card pt-e" data-cursor="VIEW">
         <img src="assets/brand.jpg" alt="Editorial">
         <span class="photo-tile-label">Editorial</span>
       </div>
 
       <!-- Tile F — Campaign -->
-      <div class="photo-tile pt-f">
+      <div class="photo-tile tilt-card pt-f" data-cursor="VIEW">
         <img src="assets/campaign.png" alt="Campaign · Mock Shoot">
         <span class="photo-tile-label">Campaign · Mock Shoot</span>
       </div>
 
       <!-- Tile G — F&B (4:5 Ratio) -->
-      <div class="photo-tile pt-g">
+      <div class="photo-tile tilt-card pt-g" data-cursor="VIEW">
         <img src="assets/lafemmora2.jpg" alt="F&B">
         <span class="photo-tile-label">F&amp;B</span>
       </div>
 
       <!-- Tile H — Architecture -->
-      <div class="photo-tile pt-h">
+      <div class="photo-tile tilt-card pt-h" data-cursor="VIEW">
         <span class="photo-tile-label">Architecture</span>
       </div>
     </div>
@@ -1359,25 +1505,25 @@ a.detail-value:hover { color: var(--blue); }
       <p class="process-sub">From our first call to your first post, here's exactly how we take a brand from idea to live.</p>
     </div>
     <div class="steps">
-      <div class="step reveal delay-1">
+      <div class="step tilt-card reveal delay-1">
         <div class="step-n">01</div>
         <h3 class="step-title">Discovery</h3>
         <p class="step-desc">We learn your business, your market, and what you actually want to be known for. The brief from this session drives everything.</p>
         <div class="step-bar"></div>
       </div>
-      <div class="step reveal delay-2">
+      <div class="step tilt-card reveal delay-2">
         <div class="step-n">02</div>
         <h3 class="step-title">Strategy</h3>
         <p class="step-desc">Positioning, audience, tone, and content pillars — the thinking work that keeps your brand coherent two years from now.</p>
         <div class="step-bar"></div>
       </div>
-      <div class="step reveal delay-3">
+      <div class="step tilt-card reveal delay-3">
         <div class="step-n">03</div>
         <h3 class="step-title">Creation</h3>
         <p class="step-desc">Design, content, and production. We move fast, share work early, and refine until it feels undeniably right.</p>
         <div class="step-bar"></div>
       </div>
-      <div class="step reveal delay-4">
+      <div class="step tilt-card reveal delay-4">
         <div class="step-n">04</div>
         <h3 class="step-title">Growth</h3>
         <p class="step-desc">Monthly production cycles keep your brand active. We track what lands and use that to make the next month better.</p>
@@ -1396,25 +1542,25 @@ a.detail-value:hover { color: var(--blue); }
       <p class="founders-intro">Underpass Media was founded in May 2026 by four young creatives from Chandigarh who believed that great branding shouldn't be a privilege of big budgets. We started building brands for people around us — and haven't stopped since.</p>
     </div>
     <div class="founders-grid">
-      <div class="founder-card reveal delay-1">
+      <div class="founder-card tilt-card reveal delay-1">
         <div class="founder-initials">HS</div>
         <p class="founder-name">Harkanwal Singh</p>
         <p class="founder-role">Content & Production · PEC</p>
         <p class="founder-bio">Industrial & Product Design student at PEC. Drives content strategy and production — turning ideas into work that actually ships, on time and on brand.</p>
       </div>
-      <div class="founder-card reveal delay-2">
+      <div class="founder-card tilt-card reveal delay-2">
         <div class="founder-initials">AJ</div>
         <p class="founder-name">Arnav Jolly</p>
         <p class="founder-role">Brand Direction & Production · NIFT</p>
         <p class="founder-bio">Fashion & communication student at NIFT. Leads brand direction and oversees production — ensuring every deliverable carries a coherent, intentional visual voice.</p>
       </div>
-      <div class="founder-card reveal delay-3">
+      <div class="founder-card tilt-card reveal delay-3">
         <div class="founder-initials">TS</div>
         <p class="founder-name">Tejas Shrivastav</p>
         <p class="founder-role">Operations & Growth · PEC</p>
         <p class="founder-bio">Engineering student at PEC. Keeps the agency running — managing client relationships, tracking performance, and making sure nothing slips between strategy and delivery.</p>
       </div>
-      <div class="founder-card reveal delay-4">
+      <div class="founder-card tilt-card reveal delay-4">
         <div class="founder-initials">VD</div>
         <p class="founder-name">Vedansh Dhangar</p>
         <p class="founder-role">Creative & Art Direction · NID</p>
@@ -1556,11 +1702,95 @@ a.detail-value:hover { color: var(--blue); }
 </div>
 
 <script>
-  /* Nav scroll */
+  /* ══════════════════════════════════════════
+     1. SCROLL PROGRESS BAR & PARALLAX
+  ══════════════════════════════════════════ */
+  const scrollProgressBar = document.getElementById('scrollProgressBar');
   const nav = document.getElementById('nav');
+  const heroBody = document.querySelector('.hero-body');
+
   window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 50);
+    const scrollTotal = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = (window.scrollY / scrollTotal) * 100;
+    scrollProgressBar.style.width = progress + '%';
+
+    // Header scroll background toggle & shrink
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+
+    // Hero parallax depth effect
+    if (window.scrollY < window.innerHeight && heroBody) {
+      heroBody.style.transform = `translateY(${window.scrollY * 0.25}px)`;
+      heroBody.style.opacity = 1 - (window.scrollY / (window.innerHeight * 0.9));
+    }
   }, { passive: true });
+
+  /* ══════════════════════════════════════════
+     2. CUSTOM INTERACTIVE MAGNETIC CURSOR
+  ══════════════════════════════════════════ */
+  const cursor = document.getElementById('customCursor');
+  const follower = document.getElementById('cursorFollower');
+
+  if (window.innerWidth >= 992 && cursor && follower) {
+    let mouseX = 0, mouseY = 0;
+    let followerX = 0, followerY = 0;
+
+    window.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      cursor.style.left = mouseX + 'px';
+      cursor.style.top = mouseY + 'px';
+    });
+
+    function animateCursor() {
+      followerX += (mouseX - followerX) * 0.15;
+      followerY += (mouseY - followerY) * 0.15;
+      follower.style.left = followerX + 'px';
+      follower.style.top = followerY + 'px';
+      requestAnimationFrame(animateCursor);
+    }
+    animateCursor();
+
+    // Hover interactions for Cursor
+    document.querySelectorAll('a, button, input, select, textarea').forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        follower.classList.add('hover-active');
+      });
+      el.addEventListener('mouseleave', () => {
+        follower.classList.remove('hover-active');
+        follower.textContent = '';
+      });
+    });
+
+    document.querySelectorAll('[data-cursor]').forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        const text = el.getAttribute('data-cursor');
+        follower.textContent = text;
+        follower.classList.add('hover-media');
+      });
+      el.addEventListener('mouseleave', () => {
+        follower.textContent = '';
+        follower.classList.remove('hover-media');
+      });
+    });
+  }
+
+  /* ══════════════════════════════════════════
+     3. 3D TILT EFFECT ON CARDS
+  ══════════════════════════════════════════ */
+  document.querySelectorAll('.tilt-card').forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      const rotateX = (-y / rect.height) * 12;
+      const rotateY = (x / rect.width) * 12;
+      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+    });
+  });
 
   /* Hamburger menu */
   function toggleMenu() {
@@ -1574,7 +1804,6 @@ a.detail-value:hover { color: var(--blue); }
 
   /* Smooth Theme Toggle (Light / Dark) */
   const themeToggleBtn = document.getElementById('themeToggleBtn');
-  
   themeToggleBtn.addEventListener('click', () => {
     document.body.classList.toggle('dark-theme');
   });
